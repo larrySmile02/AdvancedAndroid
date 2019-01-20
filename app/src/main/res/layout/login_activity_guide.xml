@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/adv_login_bg">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_guide_btns"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="240dp"
+            android:layout_height="44dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="74dp"
+            android:layout_marginLeft="88dp"
+            android:layout_marginRight="88dp"
+            android:textColor="#a1a1a1"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:text="@string/login_adv_create_account"
+            android:background="@drawable/bg_loginbutton_and_line"/>
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="136dp"
+            android:layout_marginLeft="88dp"
+            android:layout_marginRight="88dp"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="@string/login_adv_login"
+            android:textColor="#a1a1a1"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_loginbutton_and_line"/>
+
+        <TextView
+            android:id="@+id/learn_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="34dp"
+            android:alpha="0.5"
+            android:gravity="center"
+            android:text="@string/login_forget_keyword"
+            android:textColor="#000000"
+            android:textSize="14sp"/>
+    </RelativeLayout>
+</RelativeLayout>

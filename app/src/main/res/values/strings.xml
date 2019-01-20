@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">AdvancedAndroidHelper</string>
+    <string name="grid_profile_and_settings">profile and settings</string>
+    <string name="grid_location_and_room_setup">location and room setup</string>
+    <string name="grid_scenes_and_automation">scenes and automation</string>
+    <string name="grid_person_connect">connect with a real person via \n chat, voice or video call</string>
+    <string name="grid_connect">connect</string>
+    <string name="grid_product">product</string>
+    <string name="grid_install">install</string>
+    <string name="login_adv_create_account">Create Account</string>
+    <string name="login_adv_login">Login</string>
+    <string name="login_forget_keyword">forget password</string>
+</resources>
