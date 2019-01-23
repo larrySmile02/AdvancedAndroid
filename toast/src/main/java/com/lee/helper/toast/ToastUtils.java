@@ -100,7 +100,6 @@ public final class ToastUtils {
                 sToast = new BaseToast(application);
             }
         }else {
-//            sToast = new SupportToast(application);
             sToast = new SupportToast(application);
         }
 
