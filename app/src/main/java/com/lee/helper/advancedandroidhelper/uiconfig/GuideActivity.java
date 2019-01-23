@@ -30,7 +30,7 @@ public class GuideActivity extends ConfigUIActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if(id == R.id.rl_guide_btns){
+        if(id == R.id.btn_register){
             startActivity(new Intent(GuideActivity.this,MyPersonalActivity.class));
         }
     }

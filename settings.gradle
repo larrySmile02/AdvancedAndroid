@@ -1,1 +1,1 @@
-include ':app', ':commonview', ':config'
+include ':app', ':commonview', ':config', ':toast'
