@@ -27,4 +27,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     api project (':config')
     api project (':toast')
+    api project (':smartokhttp')
+    api project (':frame')
 }
