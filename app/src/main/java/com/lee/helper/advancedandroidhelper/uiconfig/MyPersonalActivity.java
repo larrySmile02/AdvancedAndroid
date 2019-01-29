@@ -24,6 +24,7 @@ import okhttp3.Response;
 public class MyPersonalActivity extends ConfigUIActivity {
 
     private static final String GRID_API_UK = "https://api.backendless.com/DBB73A3F-4B87-5C72-FF30-BCE8810F8700/3F81588C-4200-BA2F-FF66-2FDE2DF63400/services/GridSettingsUK/GetSettings";
+    private static final String BAIDU = "https://www.baidu.com/";
 
     @Override
     public int getConfigBase() {
@@ -36,7 +37,6 @@ public class MyPersonalActivity extends ConfigUIActivity {
         setContentView(R.layout.personalcenter_fragment_native);
         initData();
 
-
     }
 
     private void initData() {
@@ -45,7 +45,7 @@ public class MyPersonalActivity extends ConfigUIActivity {
             @Override
             public void subscribe(final ObservableEmitter<String> emitter) {
 
-                HttpUtils.get(GRID_API_UK, new okhttp3.Callback() {
+                HttpUtils.get(BAIDU, new okhttp3.Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
 
@@ -58,6 +58,8 @@ public class MyPersonalActivity extends ConfigUIActivity {
                             emitter.onNext(response.body().toString());
                         }
                     }
+
+
                 });
 
 
@@ -87,6 +89,9 @@ public class MyPersonalActivity extends ConfigUIActivity {
                     }
                 });
     }
+
+
+
 
     @Override
     protected void onDestroy() {

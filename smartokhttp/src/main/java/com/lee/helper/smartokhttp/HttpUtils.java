@@ -15,6 +15,7 @@ public class HttpUtils
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().
                 url(url).
+                get().
                 build();
         client.newCall(request).enqueue(callback);
     }

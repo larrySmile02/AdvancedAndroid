@@ -10,6 +10,8 @@ import android.content.res.Resources;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.support.v4.app.NotificationManagerCompat;
+import android.text.TextUtils;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -36,6 +38,8 @@ public final class ToastUtils {
     private static IToastStyle sDefaultStyle;
 
     private static Toast sToast;
+
+    private static String SAMSUNG = "samsung";
 
     public static void preToast(Activity activity){
         if (!NotificationManagerCompat.from(activity).areNotificationsEnabled() &&
@@ -91,8 +95,12 @@ public final class ToastUtils {
             sDefaultStyle = new ToastBlackStyle();
         }
 
+        //
+        String brand = Build.BRAND;
         // 判断有没有通知栏权限
-        if (isNotificationEnabled(application)) {
+        if(!TextUtils.isEmpty(brand) && SAMSUNG.equals(brand) && Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1){
+            sToast = new SupportToast(application);
+        }else if (isNotificationEnabled(application)) {
             // Android 7.1 上发现主线程被阻塞后吐司会报错的问题
             if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1) {
                 sToast = new SafeToast(application);
