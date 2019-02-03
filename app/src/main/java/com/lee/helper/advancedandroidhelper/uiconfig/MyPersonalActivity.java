@@ -45,7 +45,7 @@ public class MyPersonalActivity extends ConfigUIActivity {
             @Override
             public void subscribe(final ObservableEmitter<String> emitter) {
 
-                HttpUtils.get(BAIDU, new okhttp3.Callback() {
+                HttpUtils.get(GRID_API_UK, new okhttp3.Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
 
@@ -53,9 +53,10 @@ public class MyPersonalActivity extends ConfigUIActivity {
                     }
 
                     @Override
-                    public void onResponse(Call call, Response response) {
+                    public void onResponse(Call call, Response response) throws IOException {
                         if(response.isSuccessful()){
-                            emitter.onNext(response.body().toString());
+                            String body = response.body().string();
+                            emitter.onNext(body);
                         }
                     }
 

@@ -1,1 +1,1 @@
-include ':app', ':commonview', ':config', ':toast', ':smartokhttp', ':frame'
+include ':app', ':commonview', ':config', ':toast', ':smartokhttp', ':frame', ':recycler'

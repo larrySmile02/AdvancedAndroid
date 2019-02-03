@@ -9,10 +9,11 @@ import android.widget.Button;
 import com.lee.helper.advancedandroidhelper.R;
 import com.lee.helper.config.ConfigUIActivity;
 
-public class GuideActivity extends ConfigUIActivity implements View.OnClickListener
+public class GuideActivity extends ConfigUIActivity
 {
 
     private Button btnRiger;
+    private Button btnLogin;
 
     @Override
     public int getConfigBase() {
@@ -24,14 +25,13 @@ public class GuideActivity extends ConfigUIActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity_guide);
         btnRiger = findViewById(R.id.btn_register);
-        btnRiger.setOnClickListener(this);
+        btnRiger.setOnClickListener(v -> {
+            startActivity(new Intent(GuideActivity.this,MyPersonalActivity.class));
+        });
+        btnLogin = findViewById(R.id.btn_login);
+        btnLogin.setOnClickListener(v -> {
+            startActivity(new Intent(GuideActivity.this,MyPersonalActivity.class));
+        });
     }
 
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        if(id == R.id.btn_register){
-            startActivity(new Intent(GuideActivity.this,MyPersonalActivity.class));
-        }
-    }
 }

@@ -1,47 +1,46 @@
 package com.lee.helper.advancedandroidhelper;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import com.lee.helper.advancedandroidhelper.adapter.RecMainAdapter;
+import com.lee.helper.config.ConfigUIActivity;
+import com.lee.helper.recycler.widget.DividerItemDoceration;
 
-import com.lee.helper.advancedandroidhelper.uiconfig.GuideActivity;
-import com.lee.helper.advancedandroidhelper.uiconfig.MyPersonalActivity;
-import com.lee.helper.toast.ToastUtils;
+import java.util.Arrays;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ConfigUIActivity {
 
-    private Button btnConfig;
-    private Button btnToast;
-    private Activity mActivity;
+    /** 默认分割线高度*/
+    private final int DEFAUT_DIVIDER_HEIGHT = 1;
+    private RecyclerView recView;
+    private RecMainAdapter adapter;
+    private String [] items = new String[]{"Config Demo","Toast Demo","RecyclerView Demo"};
+
+    @Override
+    public int getConfigBase() {
+        return CONFIG_ORIGIN;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mActivity = this;
-        btnConfig = findViewById(R.id.btn_config);
-        btnConfig.setOnClickListener(v -> mActivity.startActivity(new Intent(mActivity, GuideActivity.class)));
-        btnToast = findViewById(R.id.btn_toast);
-        btnToast.setOnClickListener(v -> {
-            ToastUtils.preToast(MainActivity.this);
-            ToastUtils.show("点一下我试试");
-        });
+        initViews();
+    }
+
+    private void initViews(){
+        recView = findViewById(R.id.rec);
+        List<String> itemList = Arrays.asList(items);
+        adapter = new RecMainAdapter(this,itemList);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        DividerItemDoceration decoration = new DividerItemDoceration(this,DEFAUT_DIVIDER_HEIGHT,R.color.advance_bfbfbf,true);
+        recView.setLayoutManager(layoutManager);
+        recView.addItemDecoration(decoration);
+        recView.setAdapter(adapter);
 
     }
 
-//    @Override
-//    public void onClick(View v) {
-//        int id = v.getId();
-//        if(id == R.id.btn_config){
-//            startActivity(new Intent(MainActivity.this, GuideActivity.class));
-//        }else if(id == R.id.btn_toast){
-//            ToastUtils.preToast(MainActivity.this);
-//            ToastUtils.show("点一下我试试");
-//        }
-//
-//    }
+
+
 }
