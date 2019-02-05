@@ -12,7 +12,7 @@ import android.view.View;
 import com.lee.helper.recycler.R;
 
 
-public class DividerItemDoceration extends RecyclerView.ItemDecoration
+public class SimpleDividerItemDoceration extends RecyclerView.ItemDecoration
 {
     private final int DEFEAUT_HEIGHT = 1; //默认高度是1px
     private final int DEFEUT_COLOR = R.color.recycler_bfbfbf;
@@ -22,7 +22,7 @@ public class DividerItemDoceration extends RecyclerView.ItemDecoration
     private boolean isShowBl; //是否显示底部分割线
     private int dividerCount; //分割线数量
 
-    public DividerItemDoceration(Context mContext, int height , int colorRes ,boolean isShowBL){
+    public SimpleDividerItemDoceration(Context mContext, int height , int colorRes , boolean isShowBL){
         this.mContext = mContext;
         if(height > 0)this.mHeight = height;
         this.mColorRes = colorRes;

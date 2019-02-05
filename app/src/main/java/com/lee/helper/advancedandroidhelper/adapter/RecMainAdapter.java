@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.lee.helper.advancedandroidhelper.R;
 import com.lee.helper.advancedandroidhelper.uiconfig.Constant;
 import com.lee.helper.advancedandroidhelper.uiconfig.GuideActivity;
+import com.lee.helper.recycler.RecDevInfoActivity;
 import com.lee.helper.toast.ToastUtils;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class RecMainAdapter extends RecyclerView.Adapter
                 ToastUtils.preToast(mActivity);
                 ToastUtils.show(mActivity.getResources().getString(R.string.click_me));
             }else if(title.contains(Constant.RECYCLERVIEW)){
-
+                mActivity.startActivity(new Intent(mActivity, RecDevInfoActivity.class));
             }
         });
     }

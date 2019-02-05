@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="recycler_bfbfbf">#bfbfbf</color>
+    <color name="rec_black">#000000</color>
+    <color name="rec_grey">#8A8E91</color>
+    <color name="rec_ffffff">#ffffff</color>
 </resources>

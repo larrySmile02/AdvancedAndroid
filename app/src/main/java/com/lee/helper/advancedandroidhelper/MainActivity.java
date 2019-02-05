@@ -4,7 +4,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import com.lee.helper.advancedandroidhelper.adapter.RecMainAdapter;
 import com.lee.helper.config.ConfigUIActivity;
-import com.lee.helper.recycler.widget.DividerItemDoceration;
+import com.lee.helper.recycler.widget.SimpleDividerItemDoceration;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +34,7 @@ public class MainActivity extends ConfigUIActivity {
         List<String> itemList = Arrays.asList(items);
         adapter = new RecMainAdapter(this,itemList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        DividerItemDoceration decoration = new DividerItemDoceration(this,DEFAUT_DIVIDER_HEIGHT,R.color.advance_bfbfbf,true);
+        SimpleDividerItemDoceration decoration = new SimpleDividerItemDoceration(this,DEFAUT_DIVIDER_HEIGHT,R.color.advance_bfbfbf,true);
         recView.setLayoutManager(layoutManager);
         recView.addItemDecoration(decoration);
         recView.setAdapter(adapter);
