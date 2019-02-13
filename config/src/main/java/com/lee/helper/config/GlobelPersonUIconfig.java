@@ -22,7 +22,10 @@ import java.lang.reflect.Method;
 
 
 /**
- * 根据今日头条屏幕适配方案
+ * Modify by yue , 2019-2-13
+ * 根据今日头条屏幕适配方案，
+ * 经测试可以适配 huawei mate 7 , huawei nova , nasamsumg，OPPO， Meizu, google 手机，
+ * 不能适配 huawei p20,原因查找中
  * */
 public class GlobelPersonUIconfig {
 
