@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.lee.helper.advancedandroidhelper.R;
 import com.lee.helper.advancedandroidhelper.uiconfig.Constant;
 import com.lee.helper.advancedandroidhelper.uiconfig.GuideActivity;
+import com.lee.helper.advancedandroidhelper.uiconfig.MyPersonalActivity;
 import com.lee.helper.recycler.RecDevInfoActivity;
 import com.lee.helper.toast.ToastUtils;
 

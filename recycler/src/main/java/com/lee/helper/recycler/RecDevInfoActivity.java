@@ -18,6 +18,7 @@ import java.util.List;
 
 public class RecDevInfoActivity extends ConfigUIActivity implements IRecView{
 
+    private final int DEFAUT_DIVIDER_HEIGHT = 1;
     private RecyclerView recView;
     private DevInfoAdapter adapter;
     private RecPresenter presenter;
@@ -40,7 +41,7 @@ public class RecDevInfoActivity extends ConfigUIActivity implements IRecView{
         recView = findViewById(R.id.rec_info);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recView.setLayoutManager(layoutManager);
-        SimpleDividerItemDoceration decoration = new SimpleDividerItemDoceration(this,1,R.color.recycler_bfbfbf,false);
+        SimpleDividerItemDoceration decoration = new SimpleDividerItemDoceration(this,DEFAUT_DIVIDER_HEIGHT,R.color.recycler_bfbfbf,true);
         recView.addItemDecoration(decoration);
         adapter = new DevInfoAdapter(this);
         recView.setAdapter(adapter);
