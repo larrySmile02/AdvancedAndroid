@@ -1,1 +1,1 @@
-include ':app', ':commonview', ':config', ':toast', ':smartokhttp', ':frame', ':recycler'
+include ':app', ':lib_views', ':lib_config', ':lib_toast', ':lib_okhttp', ':lib_stencil', ':lib_rec'

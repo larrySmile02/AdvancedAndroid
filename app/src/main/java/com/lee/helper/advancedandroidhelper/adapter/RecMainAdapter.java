@@ -11,9 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lee.helper.advancedandroidhelper.R;
+import com.lee.helper.advancedandroidhelper.model.IMainActivity;
 import com.lee.helper.advancedandroidhelper.uiconfig.Constant;
 import com.lee.helper.advancedandroidhelper.uiconfig.GuideActivity;
-import com.lee.helper.advancedandroidhelper.uiconfig.MyPersonalActivity;
 import com.lee.helper.recycler.RecDevInfoActivity;
 import com.lee.helper.toast.ToastUtils;
 
@@ -25,10 +25,12 @@ public class RecMainAdapter extends RecyclerView.Adapter
     private List<String> dataItems =  new ArrayList<>();
     private LayoutInflater inflater;
     private Activity mActivity;
+    private IMainActivity listener;
 
-    public RecMainAdapter(Activity mActivity,List<String> dataItems){
+    public RecMainAdapter(Activity mActivity,List<String> dataItems , IMainActivity listener){
         this.dataItems = dataItems;
         this.mActivity = mActivity;
+        this.listener = listener;
     }
 
     @NonNull
@@ -51,6 +53,14 @@ public class RecMainAdapter extends RecyclerView.Adapter
                 ToastUtils.show(mActivity.getResources().getString(R.string.click_me));
             }else if(title.contains(Constant.RECYCLERVIEW)){
                 mActivity.startActivity(new Intent(mActivity, RecDevInfoActivity.class));
+            }else if (title.contains(Constant.SERVICE)){
+                listener.onStartMyService();
+            }else if(title.contains(Constant.REMOTE)){
+                listener.onStartRemoteService();
+            }else if(title.contains(Constant.REMOTE_MSG)){
+                listener.onSetRemoteMsg();
+            }else if(title.contains(Constant.JOB_INTENT)){
+                listener.onStartJobIntentService();
             }
         });
     }

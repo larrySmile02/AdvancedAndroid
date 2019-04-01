@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
-
+def ext = rootProject.ext
 android {
-    compileSdkVersion 28
+    compileSdkVersion ext.compileSdkVersion
     defaultConfig {
         applicationId "com.lee.helper.advancedandroidhelper"
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion ext.minSdkVersion
+        targetSdkVersion ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -20,19 +20,25 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/aidl']
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "com.android.support:appcompat-v7:${ext.appcompatVersion}"
+    implementation "com.android.support.constraint:constraint-layout:${ext.constraintlayoutVersion}"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
-    api project(':config')
-    api project(':toast')
-    api project(':smartokhttp')
-    api project(':frame')
-    api project(':recycler')
+    api "com.android.support:recyclerview-v7:${ext.recyclerviewVersion}"
+    api project(':lib_config')
+    api project(':lib_toast')
+    api project(':lib_okhttp')
+    api project(':lib_stencil')
+    api project(':lib_rec')
+
 }
