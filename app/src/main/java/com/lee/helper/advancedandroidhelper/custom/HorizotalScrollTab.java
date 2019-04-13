@@ -5,8 +5,10 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ public class HorizotalScrollTab extends HorizontalScrollView
     private ViewPager viewPager;
     private int lineWidth;//下滑线宽
     private int lineColor;//下滑线颜色
+    private String ALL = "All";
 
 
     private int DEFAUT_LINE_HEIGHT = 5;//默认线宽
@@ -67,12 +70,37 @@ public class HorizotalScrollTab extends HorizontalScrollView
        params.leftMargin = CommonUtil.dp2px(context,15);
        params.rightMargin = CommonUtil.dp2px(context,15);
         viewContainer.setLayoutParams(params);
+//        addAnText(); //用来计算viewContainer默认高度的
         addView(viewContainer);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int mHeight = 0;
+        int mWidth = 0;
+        int heigtMode = MeasureSpec.getMode(heightMeasureSpec);
+        int h = MeasureSpec.getSize(heightMeasureSpec);
+        int wightMode = MeasureSpec.getMode(widthMeasureSpec);
+        int w = MeasureSpec.getSize(widthMeasureSpec);
+        if(heigtMode == MeasureSpec.EXACTLY){
+            mHeight = h;
+        }else {
+            Rect mBounds = new Rect();
+            Paint mPaint = new Paint();
+            mPaint.setTextSize(CommonUtil.dp2px(HorizotalScrollTab.this.getContext(),16));
+            mPaint.getTextBounds(ALL,0,ALL.length(),mBounds);
+           mHeight = mBounds.height()+ lineWidth + lineWidth*2; //额外增加lineWidth2倍的margin值;
+            Log.e(TAG,"mHeight= "+ mBounds.height()+ " lineWidth = "+lineWidth);
+        }
+
+        if(wightMode == MeasureSpec.EXACTLY){
+            mWidth = w;
+        }else {
+            mWidth = CommonUtil.getScreenWidth(HorizotalScrollTab.this.getContext());
+        }
+
+        setMeasuredDimension(mWidth,mHeight);
 
     }
 
@@ -97,10 +125,25 @@ public class HorizotalScrollTab extends HorizontalScrollView
         addChildrenView();
         registerListener();
 
+
+    }
+
+    private void addAnText(){
+        TextView tv = new TextView(HorizotalScrollTab.this.getContext());
+        String title = ALL ;
+        tv.setText(title);
+        tv.setTextSize(16);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.leftMargin = CommonUtil.dp2px(HorizotalScrollTab.this.getContext(),5);
+        params.rightMargin = CommonUtil.dp2px(HorizotalScrollTab.this.getContext(),5);
+        tv.setGravity(Gravity.CENTER);
+        tv.setLayoutParams(params);
+        viewContainer.addView(tv);
     }
 
     private void addChildrenView(){
         if(viewPager != null){
+            viewContainer.removeAllViews();
             int childrenCount = viewPager.getAdapter().getCount();
            for(int j = 0; j< childrenCount; j++){
                TextView tv = new TextView(HorizotalScrollTab.this.getContext());
