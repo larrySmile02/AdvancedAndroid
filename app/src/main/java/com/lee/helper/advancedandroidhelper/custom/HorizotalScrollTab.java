@@ -91,7 +91,6 @@ public class HorizotalScrollTab extends HorizontalScrollView
             mPaint.setTextSize(CommonUtil.dp2px(HorizotalScrollTab.this.getContext(),16));
             mPaint.getTextBounds(ALL,0,ALL.length(),mBounds);
            mHeight = mBounds.height()+ lineWidth + lineWidth*2; //额外增加lineWidth2倍的margin值;
-            Log.e(TAG,"mHeight= "+ mBounds.height()+ " lineWidth = "+lineWidth);
         }
 
         if(wightMode == MeasureSpec.EXACTLY){
