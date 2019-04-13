@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,14 +24,10 @@ public class HorizotalScrollTab extends HorizontalScrollView
     private ViewPager viewPager;
     private int lineWidth;//下滑线宽
     private int lineColor;//下滑线颜色
-    private int mWidth;
-    private int mHeight;
 
 
-    private int DEFAUT_HEIGHT = 60;//默认高度
     private int DEFAUT_LINE_HEIGHT = 5;//默认线宽
     private LinearLayout viewContainer;
-    private String DEFAUT_ALL = "All";
     private float globeOffset;//滑动率
     private int glodeselectedPos; //当前选项卡的位置
 
@@ -54,7 +49,7 @@ public class HorizotalScrollTab extends HorizontalScrollView
             int attr = a.getIndex(index);
             switch (attr){
                 case R.styleable.HorizotalScrollTab_custom_line_height:
-                    lineWidth = a.getDimensionPixelSize(attr,5);
+                    lineWidth = a.getDimensionPixelSize(attr,DEFAUT_LINE_HEIGHT);
                     break;
                 case R.styleable.HorizotalScrollTab_custom_line_color:
                     lineColor = a.getColor(attr, Color.RED);
@@ -73,42 +68,11 @@ public class HorizotalScrollTab extends HorizontalScrollView
        params.rightMargin = CommonUtil.dp2px(context,15);
         viewContainer.setLayoutParams(params);
         addView(viewContainer);
-//        setBackgroundColor(context.getResources().getColor(R.color.advance_red_little));
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-//        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-//        int width = MeasureSpec.getSize(widthMeasureSpec);
-//        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-//        int height = MeasureSpec.getSize(heightMeasureSpec);
-//        if(widthMode == MeasureSpec.EXACTLY){
-//            mWidth = width;
-//        }else {
-//            int clildrenCount = viewContainer.getChildCount();
-//            int w = 0;
-//            if(clildrenCount > 0){
-//
-//                for(int i = 0; i < clildrenCount; i++ ){
-//                    w += viewContainer.getChildAt(i).getWidth();   //不确定此时子view是否已经measure完成
-//                    Log.e(TAG,"W = "+w);
-//                }
-//            }
-//
-//             mWidth = getPaddingLeft() + getPaddingRight() + w;
-//            Log.e(TAG,"mWidth = "+mWidth);
-//        }
-//
-//        if(heightMode == MeasureSpec.EXACTLY){
-//            mHeight = height;
-//        }else {
-//            int h = viewContainer.getHeight();
-//            mHeight = getPaddingBottom() + getPaddingTop() + h;
-//            Log.e(TAG,"mHeight = "+mHeight+" h = "+h);
-//        }
-//
-//        setMeasuredDimension(mWidth,mHeight);
 
     }
 
