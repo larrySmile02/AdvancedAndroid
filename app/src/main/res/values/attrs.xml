@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="custom_height" format="dimension"/>
+    <attr name="custom_width" format="dimension" />
+    <attr name="custom_line_color" format="color"/>
+    <attr name="custom_line_height" format="dimension"/>
+
+    <declare-styleable name="HorizotalScrollTab">
+        <attr name="custom_height"/>
+        <attr name="custom_width"/>
+        <attr name="custom_line_color"/>
+        <attr name="custom_line_height"/>
+    </declare-styleable>
+</resources>

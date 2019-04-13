@@ -39,7 +39,7 @@
             android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service android:name=".service.MyRemoteService"
             android:process=":monitor"/>
-
+        <activity android:name=".activity.ScrollViewActivity"/>
 
     </application>
 

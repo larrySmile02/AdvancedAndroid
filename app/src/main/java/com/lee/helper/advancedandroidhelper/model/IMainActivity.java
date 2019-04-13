@@ -5,4 +5,5 @@ public interface IMainActivity {
     void onStartRemoteService();
     void onSetRemoteMsg();
     void onStartJobIntentService();
+    void gotoSlideView();
 }

@@ -7,6 +7,8 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.lee.helper.advancedandroidhelper.activity.ScrollViewActivity;
 import com.lee.helper.advancedandroidhelper.adapter.RecMainAdapter;
 import com.lee.helper.advancedandroidhelper.constant.MyConstant;
 import com.lee.helper.advancedandroidhelper.event.ServiceEvent;
@@ -32,7 +34,7 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     private RecyclerView recView;
     private RecMainAdapter adapter;
     private String [] items = new String[]{"Config Demo","Toast Demo","RecyclerView Demo","start service","remote","MsgRemote"
-    ,"JobIntentService"};
+    ,"JobIntentService","slideView"};
     private IRemoteInterface mIRemoteInterface;
 
     @Override
@@ -104,6 +106,12 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
         JonIntent.putExtra(MyConstant.SEXY_GIRL,"吉泽明步");
         MyJobService.equeue(this,JonIntent);
 
+    }
+
+    @Override
+    public void gotoSlideView() {
+        Intent slideViewIntent = new Intent(this, ScrollViewActivity.class);
+        startActivity(slideViewIntent);
     }
 
     @Override

@@ -8,4 +8,5 @@ public class Constant {
     public static final String REMOTE = "remote";
     public static final String REMOTE_MSG = "MsgRemote";
     public static final String JOB_INTENT = "JobIntentService";
+    public static final String SLIDE_VIEW = "slideView";
 }

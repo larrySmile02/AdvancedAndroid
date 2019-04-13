@@ -61,6 +61,8 @@ public class RecMainAdapter extends RecyclerView.Adapter
                 listener.onSetRemoteMsg();
             }else if(title.contains(Constant.JOB_INTENT)){
                 listener.onStartJobIntentService();
+            }else if(title.contains(Constant.SLIDE_VIEW)){
+                listener.gotoSlideView();
             }
         });
     }

@@ -6,4 +6,6 @@
     <color name="advance_black">#000000</color>
     <color name="advance_white">#ffffff</color>
     <color name="advance_bfbfbf">#bfbfbf</color>
+    <color name="advance_red_little">#EE6363</color>
+    <color name="advance_f0fffff">#F0FFFF</color>
 </resources>
