@@ -25,7 +25,11 @@ import java.lang.reflect.Method;
  * Modify by yue , 2019-2-13
  * 根据今日头条屏幕适配方案，
  * 经测试可以适配 huawei mate 7 , huawei nova , nasamsumg，OPPO， Meizu, google 手机，
- * 不能适配 huawei p20,原因查找中
+ * 不能适配 huawei p20
+ * 因为MypersonalActivity 对应xml文件中所有控件的高度总和为616dp，标准的屏幕高度为640dp,
+ * 但是主流手机屏幕底部都会有一个虚拟导航栏，如果显示虚拟导航栏可用的屏幕高度就<640dp,
+ * 导致的后果就是如果xml所有控件高度设置为640，在手机显示虚拟导航栏的时候就会显示不全；如果xml所有控件高度设置为<640，在手机隐藏虚拟导航栏的时候就会不满一屏；
+ * 正在寻找两全其美的办法
  * */
 public class GlobelPersonUIconfig {
 
