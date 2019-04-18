@@ -40,6 +40,7 @@
         <service android:name=".service.MyRemoteService"
             android:process=":monitor"/>
         <activity android:name=".activity.ScrollViewActivity"/>
+        <activity android:name=".activity.TestFlutterViewActivity"/>
 
     </application>
 

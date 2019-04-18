@@ -1,1 +1,14 @@
-include ':app', ':lib_views', ':lib_config', ':lib_toast', ':lib_okhttp', ':lib_stencil', ':lib_rec'
+
+include ':app',
+        ':lib_views',
+        ':lib_config',
+        ':lib_toast',
+        ':lib_okhttp',
+        ':lib_stencil',
+        ':lib_rec'
+
+setBinding(new Binding([gradle: this]))                                 // new
+evaluate(new File(                                                      // new
+        settingsDir,                                               // new
+        'my_flutter/.android/include_flutter.groovy'                          // new
+))                                                                      // new

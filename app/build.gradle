@@ -40,5 +40,5 @@ dependencies {
     api project(':lib_okhttp')
     api project(':lib_stencil')
     api project(':lib_rec')
-
+    api project(':flutter')
 }

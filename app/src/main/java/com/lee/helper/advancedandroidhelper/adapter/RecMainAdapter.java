@@ -63,6 +63,8 @@ public class RecMainAdapter extends RecyclerView.Adapter
                 listener.onStartJobIntentService();
             }else if(title.contains(Constant.SLIDE_VIEW)){
                 listener.gotoSlideView();
+            }else if(title.contains(Constant.FLUTTER_MAIN)){
+                listener.gotoFlutterMain();
             }
         });
     }

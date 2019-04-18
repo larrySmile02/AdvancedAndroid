@@ -6,4 +6,5 @@ public interface IMainActivity {
     void onSetRemoteMsg();
     void onStartJobIntentService();
     void gotoSlideView();
+    void gotoFlutterMain();
 }
