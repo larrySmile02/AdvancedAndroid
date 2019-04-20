@@ -11,7 +11,7 @@
 Toast工具就是为了解决这个问题。非原创，搬运自[Android轮子哥](https://github.com/getActivity/ToastUtils) 向作者致谢
 - flutter混合开发。这是纯粹的练手项目，里面有一两个小坑。
 <div align="center">
-  <img src="https://github.com/larrySmile02/AdvancedAndroid/blob/master/images/%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D.gif" width="300" alt="屏幕适配效果">
-  <img src="https://github.com/larrySmile02/AdvancedAndroid/blob/master/images/toast.jpg" width="300" alt="Toast效果">
-  <img src="https://github.com/larrySmile02/AdvancedAndroid/blob/master/images/native%E8%B7%B3%E8%BD%ACflutter%E9%A1%B5%E9%9D%A2%E6%95%88%E6%9E%9C%E5%9B%BE.gif" width="300" alt="Toast效果">
+  <img src="https://github.com/larrySmile02/AdvancedAndroid/blob/master/images/%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D.gif" width="260" alt="屏幕适配效果">
+  <img src="https://github.com/larrySmile02/AdvancedAndroid/blob/master/images/toast.jpg" width="260" alt="Toast效果">
+  <img src="https://github.com/larrySmile02/AdvancedAndroid/blob/master/images/native%E8%B7%B3%E8%BD%ACflutter%E9%A1%B5%E9%9D%A2%E6%95%88%E6%9E%9C%E5%9B%BE.gif" width="260" alt="Toast效果">
 </div>
