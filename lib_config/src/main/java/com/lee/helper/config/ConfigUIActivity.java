@@ -3,6 +3,7 @@ package com.lee.helper.config;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 public abstract class ConfigUIActivity extends AppCompatActivity
 {
@@ -22,5 +23,6 @@ public abstract class ConfigUIActivity extends AppCompatActivity
         }else if(getConfigBase() == CONFIG_ORIGIN){
             GlobelPersonUIconfig.setOrigDensity(getApplication(),this);
         }
+
     }
 }

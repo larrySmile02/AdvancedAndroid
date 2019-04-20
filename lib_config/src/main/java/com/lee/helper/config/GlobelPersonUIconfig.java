@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -60,7 +61,7 @@ public class GlobelPersonUIconfig {
 
         //Android 4.2以上华为手机的虚拟导航可能会导致 appDisplayMetric.heightPixels 小于可显示的屏幕高度，所以就换一种方法获取
         float screenHeight = -1f;
-        if(checkHasNavigationBar(activity)){
+        if(checkNavigationBarShow(activity)){
                 screenHeight = 1f *appDisplayMetric.heightPixels;
         }else {
             if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR1){
@@ -72,7 +73,7 @@ public class GlobelPersonUIconfig {
         final float targetDensity = screenHeight / 640;
         final float targetScaleDensity = targetDensity * (sNonCompatScaleDesity / sNonCompatDesity);
         final int targetDensityDpi = (int) (160 * targetDensity);
-        Log.i("ConfigUI","screenHeight = "+screenHeight+" targetDensity= "+targetDensity);
+        Log.i("ConfigUI","screenHeight1 = "+screenHeight+"screenHeight2 = "+" targetDensity= "+targetDensity);
         activityDisplayMetric.density = targetDensity;
         activityDisplayMetric.scaledDensity = targetScaleDensity;
         activityDisplayMetric.densityDpi = targetDensityDpi;
@@ -125,18 +126,7 @@ public class GlobelPersonUIconfig {
     }
 
 
-    /**
-     * 获取屏幕的宽，
-     *
-     * @param context
-     * @return
-     */
-    public static int getScreenWidth(Context context) {
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics dm = new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(dm);
-        return dm.widthPixels;
-    }
+
 
     /**
      * 获取屏幕的高度
@@ -151,32 +141,14 @@ public class GlobelPersonUIconfig {
         return dm.heightPixels;
     }
 
-
     /**
-     * 获取虚拟键的高度
-     *
-     * @param context
-     * @return
+     * 判断虚拟导航栏是否显示
+     * @param context 上下文对象
+     * @return true(显示虚拟导航栏)，false(不显示或不支持虚拟导航栏)
      */
-    public static int getNavigationBarHeight(Context context) {
-        int navigationBarHeight = -1;
-        Resources resources = context.getResources();
-        int resourceId = resources.getIdentifier("navigation_bar_height","dimen", "android");
-        if (resourceId > 0) {
-            navigationBarHeight = resources.getDimensionPixelSize(resourceId);
-        }
-        return navigationBarHeight;
-    }
-
-    /**
-     * 判断是否有虚拟导航栏
-     *
-     * @param activity
-     * @return
-     */
-    public static boolean checkHasNavigationBar(Activity activity) {
+    public static boolean checkNavigationBarShow(@NonNull Context context) {
         boolean hasNavigationBar = false;
-        Resources rs = activity.getResources();
+        Resources rs = context.getResources();
         int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
         if (id > 0) {
             hasNavigationBar = rs.getBoolean(id);
@@ -185,17 +157,87 @@ public class GlobelPersonUIconfig {
             Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
             Method m = systemPropertiesClass.getMethod("get", String.class);
             String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
-            if ("1".equals(navBarOverride)) {
+            //判断是否隐藏了底部虚拟导航
+            int navigationBarIsMin = 0;
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                navigationBarIsMin = Settings.System.getInt(context.getContentResolver(),
+                        "navigationbar_is_min", 0);
+            } else {
+                navigationBarIsMin = Settings.Global.getInt(context.getContentResolver(),
+                        "navigationbar_is_min", 0);
+            }
+            if ("1".equals(navBarOverride) || 1 == navigationBarIsMin) {
                 hasNavigationBar = false;
             } else if ("0".equals(navBarOverride)) {
                 hasNavigationBar = true;
             }
         } catch (Exception e) {
-
         }
         return hasNavigationBar;
+    }
 
 
+
+
+
+    /**
+     * 备用方法
+     * 获取 底部虚拟导航的高度
+     * @param context
+     * @return
+     */
+    public static int getBottomStatusHeight(Context context) {
+        if (checkNavigationBarShow(context)) {
+            int totalHeight = getDpi(context);
+            int contentHeight = getScreenHeight(context);
+            return totalHeight - contentHeight;
+        } else {
+            return 0;
+        }
+    }
+
+
+
+
+
+    //获取屏幕原始尺寸高度，包括虚拟功能键高度
+    public static int getDpi(Context context) {
+        int dpi = 0;
+        WindowManager windowManager = (WindowManager)
+                context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = windowManager.getDefaultDisplay();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        @SuppressWarnings("rawtypes")
+        Class c;
+        try {
+            c = Class.forName("android.view.Display");
+            @SuppressWarnings("unchecked")
+            Method method = c.getMethod("getRealMetrics", DisplayMetrics.class);
+            method.invoke(display, displayMetrics);
+            dpi = displayMetrics.heightPixels;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dpi;
+    }
+    //获取屏幕高度 不包含虚拟按键=
+    public static int getScreenHeight(Context context) {
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        return dm.heightPixels;
+    }
+
+
+    /**
+     * 获取屏幕的宽，
+     *
+     * @param context
+     * @return
+     */
+    public static int getScreenWidth(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(dm);
+        return dm.widthPixels;
     }
 
 
