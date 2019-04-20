@@ -9,7 +9,7 @@
 - Toast工具
 在Android 5.0以上有些手机上，如果通知权限关闭后就会有Toast弹不出的问题，有些手机（比如OPPO）通知权限默认关闭的，遇到这种情况就有bug了。
 Toast工具就是为了解决这个问题。非原创，搬运自[Android轮子哥](https://github.com/getActivity/ToastUtils) 向作者致谢
-<figure class="third">
+<div align="center">
   <img src="https://github.com/larrySmile02/AdvancedAndroid/blob/master/images/%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D.gif" width="320" alt="屏幕适配效果">
   <img src="https://github.com/larrySmile02/AdvancedAndroid/blob/master/images/toast.jpg" width="320" alt="Toast效果">
-</figure>
+</div>
