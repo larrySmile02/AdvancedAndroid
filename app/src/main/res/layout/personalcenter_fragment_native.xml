@@ -15,7 +15,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/clt_prof"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="58dp">
 
                 <LinearLayout
                     android:id="@+id/llt_close"
@@ -58,7 +58,7 @@
             <LinearLayout
                 android:id="@+id/llt_loc_room"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="58dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -81,7 +81,7 @@
             <LinearLayout
                 android:id="@+id/llt_scenes"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="58dp"
                 android:orientation="horizontal">
 
                 <TextView

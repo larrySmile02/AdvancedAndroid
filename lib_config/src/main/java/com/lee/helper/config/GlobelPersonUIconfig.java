@@ -60,7 +60,9 @@ public class GlobelPersonUIconfig {
         }
 
         //Android 4.2以上华为手机的虚拟导航可能会导致 appDisplayMetric.heightPixels 小于可显示的屏幕高度，所以就换一种方法获取
+        //可显示的屏幕里包括状态栏，这部分也是要排除掉的，剩下的才是可使用的高度
         float screenHeight = -1f;
+        float validHeight = -1f;
         if(checkNavigationBarShow(activity)){
                 screenHeight = 1f *appDisplayMetric.heightPixels;
         }else {
@@ -70,10 +72,12 @@ public class GlobelPersonUIconfig {
                 screenHeight = 1f *appDisplayMetric.heightPixels;
             }
         }
-        final float targetDensity = screenHeight / 640;
+        validHeight = screenHeight - getStatusBarHeight(activity);
+        final float targetDensity = validHeight / 640;
         final float targetScaleDensity = targetDensity * (sNonCompatScaleDesity / sNonCompatDesity);
         final int targetDensityDpi = (int) (160 * targetDensity);
-        Log.i("ConfigUI","screenHeight1 = "+screenHeight+"screenHeight2 = "+" targetDensity= "+targetDensity);
+        Log.i("ConfigUI","screenHeight1 = "+screenHeight+"  validHeight = "+validHeight+ " targetDensity= "+targetDensity);
+
         activityDisplayMetric.density = targetDensity;
         activityDisplayMetric.scaledDensity = targetScaleDensity;
         activityDisplayMetric.densityDpi = targetDensityDpi;
@@ -238,6 +242,19 @@ public class GlobelPersonUIconfig {
         DisplayMetrics dm = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(dm);
         return dm.widthPixels;
+    }
+
+
+    /**
+     * 获取状态栏高度
+     * @param context
+     * @return
+     */
+    public static int getStatusBarHeight(Context context) {
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        int height = resources.getDimensionPixelSize(resourceId);
+        return height;
     }
 
 
