@@ -4,6 +4,15 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(_widgetForRoute(window.defaultRouteName));
 
+Widget _widgetForRoute(String route) {
+  switch (route) {
+    case 'route1':
+      return MyApp();
+    default:
+      return MyApp();
+  }
+}
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -34,14 +43,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-Widget _widgetForRoute(String route) {
-  switch (route) {
-    case 'route1':
-      return MyApp();
-    default:
-      return MyApp();
-  }
-}
+
 
 class ListItemPage extends StatelessWidget {
   List<String> items = new List<String>.generate(5, (i) => "item = $i");
