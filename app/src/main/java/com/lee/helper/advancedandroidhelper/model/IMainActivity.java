@@ -7,4 +7,5 @@ public interface IMainActivity {
     void onStartJobIntentService();
     void gotoSlideView();
     void gotoFlutterMain();
+    void gotoAnimator();
 }

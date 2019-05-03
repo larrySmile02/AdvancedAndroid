@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+    fromXDelta: 移动起始点的x坐标, 相对于自己的左边界的距离，单位像素值。
+    toXDelta : 移动终止点的Y坐标，如上。
+    fromYDelta: 移动起始点的y坐标 ,相对于自己的上边界的距离，单位像素值。
+    toYDelta ： 移动终止点y坐标，如上。
+    起始点终止点用来定位动画的移动方式，不必一定是perform 动画的那个view上的点
+    -->
+    <translate
+        android:duration="2000"
+        android:fromXDelta="20"
+        android:fromYDelta="20"
+        android:toXDelta="100"
+        android:toYDelta="100"/>
+</set>

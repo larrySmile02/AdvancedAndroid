@@ -41,6 +41,7 @@
             android:process=":monitor"/>
         <activity android:name=".activity.ScrollViewActivity"/>
         <activity android:name=".activity.TestFlutterViewActivity"/>
+        <activity android:name=".activity.TestAnimatiorActivity"/>
 
     </application>
 

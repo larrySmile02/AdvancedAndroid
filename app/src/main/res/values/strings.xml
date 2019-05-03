@@ -11,4 +11,7 @@
     <string name="login_adv_login">Login</string>
     <string name="login_forget_keyword">forget password</string>
     <string name="click_me">Love me ,kiss me</string>
+    <string name="anim_change_alpha">Change Alpha</string>
+    <string name="anim_change_scale">Change Scale</string>
+    <string name="anim_translate">Translate</string>
 </resources>

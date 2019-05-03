@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.lee.helper.advancedandroidhelper.activity.ScrollViewActivity;
+import com.lee.helper.advancedandroidhelper.activity.TestAnimatiorActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFlutterViewActivity;
 import com.lee.helper.advancedandroidhelper.adapter.RecMainAdapter;
 import com.lee.helper.advancedandroidhelper.constant.MyConstant;
@@ -35,7 +36,7 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     private RecyclerView recView;
     private RecMainAdapter adapter;
     private String [] items = new String[]{"Config Demo","Toast Demo","RecyclerView Demo","start service","remote","MsgRemote"
-    ,"JobIntentService","slideView","flutterMain"};
+    ,"JobIntentService","slideView","flutterMain","Animator"};
     private IRemoteInterface mIRemoteInterface;
 
     @Override
@@ -120,6 +121,12 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
 
         Intent flutterIntent = new Intent(this, TestFlutterViewActivity.class);
         startActivity(flutterIntent);
+    }
+
+    @Override
+    public void gotoAnimator() {
+        Intent intent = new Intent(this, TestAnimatiorActivity.class);
+        startActivity(intent);
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.animation.AnimationUtils;
 
 import com.lee.helper.advancedandroidhelper.R;
 import com.lee.helper.advancedandroidhelper.adapter.ViewPagerAdapter;
@@ -28,6 +29,7 @@ public class ScrollViewActivity extends AppCompatActivity
         ViewPagerAdapter adapter = new ViewPagerAdapter(this,datas);
         viewPager.setAdapter(adapter);
         scrollTab.setViewPager(viewPager);
+
 
     }
 }
