@@ -15,4 +15,7 @@
     <string name="anim_change_scale">Scale</string>
     <string name="anim_translate">Translate</string>
     <string name="anim_mix">MIX</string>
+    <string name="anim_circle">Circle</string>
+    <string name="anim_circle_text">CircleText</string>
+    <string name="anim_circle_mix">CircleMix</string>
 </resources>

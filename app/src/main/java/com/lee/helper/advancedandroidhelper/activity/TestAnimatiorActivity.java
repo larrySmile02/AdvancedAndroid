@@ -3,6 +3,7 @@ package com.lee.helper.advancedandroidhelper.activity;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.animation.TypeEvaluator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.lee.helper.advancedandroidhelper.R;
+import com.lee.helper.advancedandroidhelper.anim.MyElvater;
+import com.lee.helper.advancedandroidhelper.custom.MyCircle;
+import com.lee.helper.toast.ToastUtils;
 
 public class TestAnimatiorActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,9 +32,13 @@ public class TestAnimatiorActivity extends AppCompatActivity implements View.OnC
     private Button btn;
     private Button viewPropertyBtn;
     private Button objectPropertyBtn;
+    private Button circleBtn;
+    private Button circleTextBtn;
+    private Button circleMix;
+    private MyCircle myCircle;
 
     private Animation animation;
-    IndexHolder indexHolder;
+    private IndexHolder indexHolder;
     private Animation.AnimationListener animationListener;
 
     private ViewPropertyAnimator viewPropertyAnimator;
@@ -38,6 +46,9 @@ public class TestAnimatiorActivity extends AppCompatActivity implements View.OnC
 
     private ObjectAnimator objectAnimator;
     private Animator.AnimatorListener propertyAnimatorListener;
+    private MyElvater myElvater;
+
+
 
 
     @Override
@@ -51,83 +62,18 @@ public class TestAnimatiorActivity extends AppCompatActivity implements View.OnC
         viewPropertyBtn.setOnClickListener(this);
         objectPropertyBtn = findViewById(R.id.btn_anim_property);
         objectPropertyBtn.setOnClickListener(this);
+        circleBtn = findViewById(R.id.btn_circle);
+        circleBtn.setOnClickListener(this);
+        circleTextBtn = findViewById(R.id.btn_circle_text);
+        circleTextBtn.setOnClickListener(this);
+        circleMix = findViewById(R.id.btn_circle_mix);
+        circleMix.setOnClickListener(this);
+        myCircle = findViewById(R.id.my_circle);
+        myElvater = new MyElvater();
+
         indexHolder = new IndexHolder();
-
         viewPropertyAnimator = ivGirl.animate();
-        animationListener = new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                indexHolder.increaseIndex();
-                performBtn(indexHolder.index,btn);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        };
-
-        viewPropertyAnimatorListener = new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-
-                indexHolder.increaseViewIndex();
-                performBtn(indexHolder.viewIndex,viewPropertyBtn);
-                resumeIvGirl();
-//                ivGirl.setAlpha(1f);
-//                ivGirl.setScaleX(1f);
-//                ivGirl.setScaleY(1f);
-//                ivGirl.setTranslationX(0);
-//                ivGirl.setTranslationY(0);
-
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        };
-
-        viewPropertyAnimator.setListener(viewPropertyAnimatorListener);
-
-        propertyAnimatorListener = new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                indexHolder.increasePropertyIndex();
-                performBtn(indexHolder.propertyIndex,objectPropertyBtn);
-                resumeIvGirl();
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        };
+        initListener();
 
 
     }
@@ -211,7 +157,19 @@ public class TestAnimatiorActivity extends AppCompatActivity implements View.OnC
             objectAnimator.setDuration(2000);
             objectAnimator.addListener(propertyAnimatorListener);
             objectAnimator.start();
+        }else if(id == R.id.btn_circle){
+            objectAnimator = ObjectAnimator.ofArgb(myCircle,"myColor",0xffff0000,0xff00ff00);
+            objectAnimator.setDuration(3000);
+            objectAnimator.start();
+        }else if(id == R.id.btn_circle_text){
+            objectAnimator = ObjectAnimator.ofInt(myCircle,"showCount",-1,3);
+            objectAnimator.setEvaluator(myElvater);
+            objectAnimator.setDuration(3000);
+            objectAnimator.start();
+        }else if(id == R.id.btn_circle_mix){
+            ToastUtils.show("Waiting");
         }
+
     }
 
 
@@ -252,6 +210,78 @@ public class TestAnimatiorActivity extends AppCompatActivity implements View.OnC
         ivGirl.setScaleY(1f);
         ivGirl.setTranslationX(0);
         ivGirl.setTranslationY(0);
+    }
+
+    private void initListener(){
+        animationListener = new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                indexHolder.increaseIndex();
+                performBtn(indexHolder.index,btn);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        };
+
+        viewPropertyAnimatorListener = new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+                indexHolder.increaseViewIndex();
+                performBtn(indexHolder.viewIndex,viewPropertyBtn);
+                resumeIvGirl();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        };
+
+        viewPropertyAnimator.setListener(viewPropertyAnimatorListener);
+
+        propertyAnimatorListener = new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                indexHolder.increasePropertyIndex();
+                performBtn(indexHolder.propertyIndex,objectPropertyBtn);
+                resumeIvGirl();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        };
+
     }
 
     class IndexHolder{

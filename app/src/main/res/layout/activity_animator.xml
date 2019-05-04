@@ -12,8 +12,52 @@
         android:src="@drawable/sexygirl"
         android:layout_width="230dp"
         android:layout_height="350dp" />
+    <LinearLayout
+        android:id="@+id/llt_container"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/iv_sexy_girl"
+        app:layout_constraintBottom_toTopOf="@+id/llt_btn"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.lee.helper.advancedandroidhelper.custom.MyCircle
+            android:id="@+id/my_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llt_btn"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/llt_btn_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_circle"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/anim_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_circle_text"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/anim_circle_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_circle_mix"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/anim_circle_mix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llt_btn_container"
         app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="horizontal"
         android:weightSum="3"
@@ -41,6 +85,7 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
 
     </LinearLayout>
 
