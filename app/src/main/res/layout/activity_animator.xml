@@ -13,13 +13,38 @@
         android:layout_width="230dp"
         android:layout_height="350dp" />
 
-    <Button
-        android:id="@+id/btn_anim"
+    <LinearLayout
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/anim_change_alpha"
-        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_anim"
+            android:text="@string/anim_change_alpha"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_anim_view"
+            android:text="@string/anim_change_alpha"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_anim_property"
+            android:text="@string/anim_change_alpha"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
 
 
 </android.support.constraint.ConstraintLayout>
