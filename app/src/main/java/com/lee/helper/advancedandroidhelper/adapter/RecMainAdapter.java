@@ -1,12 +1,16 @@
 package com.lee.helper.advancedandroidhelper.adapter;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,6 +30,7 @@ public class RecMainAdapter extends RecyclerView.Adapter
     private LayoutInflater inflater;
     private Activity mActivity;
     private IMainActivity listener;
+    private Animation animation;
 
     public RecMainAdapter(Activity mActivity,List<String> dataItems , IMainActivity listener){
         this.dataItems = dataItems;
@@ -69,6 +74,15 @@ public class RecMainAdapter extends RecyclerView.Adapter
                 listener.gotoAnimator();
             }
         });
+        if(isOdd(pos) ){
+            animation = AnimationUtils.loadAnimation(mActivity,R.anim.anim_trans_right);
+        }else {
+            animation = AnimationUtils.loadAnimation(mActivity,R.anim.anim_trans_left);
+        }
+        animation.setStartOffset(pos * 100);
+        View currentView = ((RecViewHolder) holder).getView();
+        if(currentView != null) currentView.startAnimation(animation);
+
     }
 
     @Override
@@ -76,15 +90,28 @@ public class RecMainAdapter extends RecyclerView.Adapter
         return dataItems.size();
     }
 
+    private boolean isOdd(int pos){
+        if(pos % 2 == 1)
+            return true;
+        else
+            return false;
+    }
+
 
     class RecViewHolder extends RecyclerView.ViewHolder{
 
         LinearLayout lltContainer;
         TextView tvName;
+        View itemView;
         public RecViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.itemView = itemView;
             tvName = itemView.findViewById(R.id.item_name);
             lltContainer = itemView.findViewById(R.id.name_container);
+        }
+
+        View getView(){
+            return itemView;
         }
     }
 }
