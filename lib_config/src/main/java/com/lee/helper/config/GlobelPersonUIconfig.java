@@ -54,20 +54,7 @@ public class GlobelPersonUIconfig {
             });
         }
 
-        //Android 4.2以上华为手机的虚拟导航可能会导致 appDisplayMetric.heightPixels 小于可显示的屏幕高度，所以就换一种方法获取
-        //可显示的屏幕里包括状态栏，这部分也是要排除掉的，剩下的才是可使用的高度
-//        float screenHeight = 1f * getRealScreenHeight(activity);
-//        float validHeight = -1f;
-//        if (checkNavigationBarShow(activity)) {
-//            validHeight =  1f *appDisplayMetric.heightPixels;
-//        } else {
-//            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR1) {
-//                validHeight = screenHeight - getStatusBarHeight(activity);
-//            } else {
-//                validHeight = 1f * appDisplayMetric.heightPixels;
-//            }
-//        }
-        float validHeight = 1f * appDisplayMetric.heightPixels;
+        float validHeight = 1f * appDisplayMetric.heightPixels; //不包括状态栏和导航栏的可用高度
         final float targetDensity = validHeight / 640;
         final float targetScaleDensity = targetDensity * (sNonCompatScaleDesity / sNonCompatDesity);
         final int targetDensityDpi = (int) (160 * targetDensity);
@@ -123,7 +110,7 @@ public class GlobelPersonUIconfig {
 
 
     /**
-     * 获取屏幕的高度
+     * 获取屏幕的高度绝对高度，备用
      *
      * @param context
      * @return
@@ -136,7 +123,7 @@ public class GlobelPersonUIconfig {
     }
 
     /**
-     * 判断虚拟导航栏是否显示
+     * 判断虚拟导航栏是否显示，备用
      *
      * @param context 上下文对象
      * @return true(显示虚拟导航栏)，false(不显示或不支持虚拟导航栏)
@@ -234,7 +221,7 @@ public class GlobelPersonUIconfig {
 
 
     /**
-     * 获取状态栏高度
+     * 获取状态栏高度，备用
      *
      * @param context
      * @return
