@@ -17,7 +17,7 @@ public class GuideActivity extends ConfigUIActivity
 
     @Override
     public int getConfigBase() {
-        return ConfigUIActivity.CONFIG_WITH_BASE;
+        return ConfigUIActivity.CONFIG_ORIGIN;
     }
 
     @Override

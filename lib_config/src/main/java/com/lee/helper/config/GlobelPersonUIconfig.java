@@ -26,23 +26,23 @@ import java.lang.reflect.Method;
  * Modify by yue , 2019-2-13
  * 根据今日头条屏幕适配方案，
  * 经测试可以适配 huawei mate 7 , huawei p20，huawei nova , nasamsumg，OPPO， Meizu, google 手机，
- * */
+ */
 public class GlobelPersonUIconfig {
 
     private static float sNonCompatDesity;
     private static float sNonCompatScaleDesity;
 
-    public static void setCustomHeightDensity(@NonNull final Application application , @NonNull Activity activity){
+    public static void setCustomHeightDensity(@NonNull final Application application, @NonNull Activity activity) {
 
         final DisplayMetrics appDisplayMetric = application.getResources().getDisplayMetrics();
         DisplayMetrics activityDisplayMetric = activity.getResources().getDisplayMetrics();
-        if(sNonCompatDesity == 0){
+        if (sNonCompatDesity == 0) {
             sNonCompatDesity = appDisplayMetric.density;
             sNonCompatScaleDesity = appDisplayMetric.scaledDensity;
             application.registerComponentCallbacks(new ComponentCallbacks() {
                 @Override
                 public void onConfigurationChanged(Configuration newConfig) {
-                    if(newConfig != null && newConfig.fontScale > 0){
+                    if (newConfig != null && newConfig.fontScale > 0) {
                         sNonCompatScaleDesity = application.getResources().getDisplayMetrics().scaledDensity;
                     }
                 }
@@ -56,22 +56,21 @@ public class GlobelPersonUIconfig {
 
         //Android 4.2以上华为手机的虚拟导航可能会导致 appDisplayMetric.heightPixels 小于可显示的屏幕高度，所以就换一种方法获取
         //可显示的屏幕里包括状态栏，这部分也是要排除掉的，剩下的才是可使用的高度
-        float screenHeight = -1f;
-        float validHeight = -1f;
-        if(checkNavigationBarShow(activity)){
-                screenHeight = 1f *appDisplayMetric.heightPixels;
-        }else {
-            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR1){
-                screenHeight = 1f *getRealScreenHeight(activity);
-            }else {
-                screenHeight = 1f *appDisplayMetric.heightPixels;
-            }
-        }
-        validHeight = screenHeight - getStatusBarHeight(activity);
+//        float screenHeight = 1f * getRealScreenHeight(activity);
+//        float validHeight = -1f;
+//        if (checkNavigationBarShow(activity)) {
+//            validHeight =  1f *appDisplayMetric.heightPixels;
+//        } else {
+//            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR1) {
+//                validHeight = screenHeight - getStatusBarHeight(activity);
+//            } else {
+//                validHeight = 1f * appDisplayMetric.heightPixels;
+//            }
+//        }
+        float validHeight = 1f * appDisplayMetric.heightPixels;
         final float targetDensity = validHeight / 640;
         final float targetScaleDensity = targetDensity * (sNonCompatScaleDesity / sNonCompatDesity);
         final int targetDensityDpi = (int) (160 * targetDensity);
-        Log.i("ConfigUI","screenHeight1 = "+screenHeight+"  validHeight = "+validHeight+ " targetDensity= "+targetDensity);
 
         activityDisplayMetric.density = targetDensity;
         activityDisplayMetric.scaledDensity = targetScaleDensity;
@@ -79,17 +78,17 @@ public class GlobelPersonUIconfig {
 
     }
 
-    public static void setCustomWithDensity(@NonNull final Application application , @NonNull Activity activity){
+    public static void setCustomWithDensity(@NonNull final Application application, @NonNull Activity activity) {
 
         final DisplayMetrics appDisplayMetric = application.getResources().getDisplayMetrics();
         DisplayMetrics activityDisplayMetric = activity.getResources().getDisplayMetrics();
-        if(sNonCompatDesity == 0){
+        if (sNonCompatDesity == 0) {
             sNonCompatDesity = appDisplayMetric.density;
             sNonCompatScaleDesity = appDisplayMetric.scaledDensity;
             application.registerComponentCallbacks(new ComponentCallbacks() {
                 @Override
                 public void onConfigurationChanged(Configuration newConfig) {
-                    if(newConfig != null && newConfig.fontScale > 0){
+                    if (newConfig != null && newConfig.fontScale > 0) {
                         sNonCompatScaleDesity = application.getResources().getDisplayMetrics().scaledDensity;
                     }
                 }
@@ -102,7 +101,6 @@ public class GlobelPersonUIconfig {
         }
 
         final float targetDensity = 1f * appDisplayMetric.widthPixels / 360;
-        Log.i("ConfigUI","origin_widthPixels = "+appDisplayMetric.widthPixels+" targetDensity= "+targetDensity);
         final float targetScaleDensity = targetDensity * (sNonCompatScaleDesity / sNonCompatDesity);
         final int targetDensityDpi = (int) (160 * targetDensity);
 
@@ -113,8 +111,7 @@ public class GlobelPersonUIconfig {
     }
 
 
-
-    public static void setOrigDensity(@NonNull final Application application , @NonNull Activity activity){
+    public static void setOrigDensity(@NonNull final Application application, @NonNull Activity activity) {
         final DisplayMetrics appDisplayMetric = application.getResources().getDisplayMetrics();
         DisplayMetrics activityDisplayMetric = activity.getResources().getDisplayMetrics();
 
@@ -123,8 +120,6 @@ public class GlobelPersonUIconfig {
         activityDisplayMetric.scaledDensity = appDisplayMetric.scaledDensity;
         activityDisplayMetric.densityDpi = appDisplayMetric.densityDpi;
     }
-
-
 
 
     /**
@@ -142,6 +137,7 @@ public class GlobelPersonUIconfig {
 
     /**
      * 判断虚拟导航栏是否显示
+     *
      * @param context 上下文对象
      * @return true(显示虚拟导航栏)，false(不显示或不支持虚拟导航栏)
      */
@@ -176,12 +172,10 @@ public class GlobelPersonUIconfig {
     }
 
 
-
-
-
     /**
      * 备用方法
      * 获取 底部虚拟导航的高度
+     *
      * @param context
      * @return
      */
@@ -194,9 +188,6 @@ public class GlobelPersonUIconfig {
             return 0;
         }
     }
-
-
-
 
 
     //备用方法，获取屏幕原始尺寸高度，包括虚拟功能键高度
@@ -219,6 +210,7 @@ public class GlobelPersonUIconfig {
         }
         return dpi;
     }
+
     //备用方法，获取屏幕高度 不包含虚拟按键=
     public static int getScreenHeight(Context context) {
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
@@ -229,6 +221,7 @@ public class GlobelPersonUIconfig {
     /**
      * 备用方法
      * 获取屏幕的宽，
+     *
      * @param context
      * @return
      */
@@ -242,6 +235,7 @@ public class GlobelPersonUIconfig {
 
     /**
      * 获取状态栏高度
+     *
      * @param context
      * @return
      */
@@ -251,7 +245,6 @@ public class GlobelPersonUIconfig {
         int height = resources.getDimensionPixelSize(resourceId);
         return height;
     }
-
 
 
 }
