@@ -32,7 +32,7 @@ import java.util.List;
 public class MainActivity extends ConfigUIActivity implements IMainActivity {
 
     /** 默认分割线高度*/
-    private final int DEFAUT_DIVIDER_HEIGHT = 1;
+    private final int DEFAUT_DIVIDER_HEIGHT = 8;
     private RecyclerView recView;
     private RecMainAdapter adapter;
     private String [] items = new String[]{"Config Demo","Toast Demo","RecyclerView Demo","start service","remote","MsgRemote"
@@ -57,7 +57,7 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
         List<String> itemList = Arrays.asList(items);
         adapter = new RecMainAdapter(this,itemList,this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        SimpleDividerItemDoceration decoration = new SimpleDividerItemDoceration(this,DEFAUT_DIVIDER_HEIGHT,R.color.advance_bfbfbf,true);
+        SimpleDividerItemDoceration decoration = new SimpleDividerItemDoceration(this,DEFAUT_DIVIDER_HEIGHT,R.color.advance_transparent,true);
         recView.setLayoutManager(layoutManager);
         recView.addItemDecoration(decoration);
         recView.setAdapter(adapter);

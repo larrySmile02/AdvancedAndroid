@@ -8,4 +8,5 @@
     <color name="advance_bfbfbf">#bfbfbf</color>
     <color name="advance_red_little">#EE6363</color>
     <color name="advance_f0fffff">#F0FFFF</color>
+    <color name="advance_transparent">#00000000</color>
 </resources>
