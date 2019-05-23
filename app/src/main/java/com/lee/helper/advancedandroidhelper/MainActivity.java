@@ -8,6 +8,7 @@ import android.os.RemoteException;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.lee.helper.advancedandroidhelper.activity.NewsActivity;
 import com.lee.helper.advancedandroidhelper.activity.ScrollViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestAnimatiorActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFlutterViewActivity;
@@ -36,7 +37,7 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     private RecyclerView recView;
     private RecMainAdapter adapter;
     private String [] items = new String[]{"Config Demo","Toast Demo","RecyclerView Demo","start service","remote","MsgRemote"
-    ,"JobIntentService","slideView","flutterMain","Animator"};
+    ,"JobIntentService","slideView","flutterMain","Animator","News"};
     private IRemoteInterface mIRemoteInterface;
 
     @Override
@@ -126,6 +127,12 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     @Override
     public void gotoAnimator() {
         Intent intent = new Intent(this, TestAnimatiorActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void gotoNews() {
+        Intent intent = new Intent(this, NewsActivity.class);
         startActivity(intent);
     }
 

@@ -72,6 +72,8 @@ public class RecMainAdapter extends RecyclerView.Adapter
                 listener.gotoFlutterMain();
             }else if(title.contains(Constant.ANIMITOR)){
                 listener.gotoAnimator();
+            }else if(title.contains(Constant.NEWS)){
+                listener.gotoNews();
             }
         });
         if(isOdd(pos) ){

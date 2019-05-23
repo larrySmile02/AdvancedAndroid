@@ -8,4 +8,5 @@ public interface IMainActivity {
     void gotoSlideView();
     void gotoFlutterMain();
     void gotoAnimator();
+    void gotoNews();
 }
