@@ -1,111 +1,64 @@
 package com.lee.helper.advancedandroidhelper.activity;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
-import com.lee.helper.advancedandroidhelper.impl.RequestImp;
-import com.lee.helper.advancedandroidhelper.model.IRequest;
-import com.lee.helper.advancedandroidhelper.utils.NetWorkUtil;
-import com.lee.helper.smartokhttp.HttpUtils;
-import com.lee.helper.smartokhttp.R;
+import com.lee.helper.advancedandroidhelper.R;
+import com.lee.helper.advancedandroidhelper.adapter.RecNewsAdapter;
+import com.lee.helper.advancedandroidhelper.bean.NewsItem;
+import com.lee.helper.advancedandroidhelper.model.NewsViwModel;
 
-import java.io.IOException;
-import java.io.PipedReader;
-import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import javax.net.ssl.HttpsURLConnection;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
-
-public class NewsActivity extends AppCompatActivity implements View.OnClickListener
-{
-    private String api = "https://v.juhe.cn/toutiao/index";
+public class NewsActivity extends AppCompatActivity {
     private String url = "https://v.juhe.cn/toutiao/index?type=top&key=483294d5e9b2202317817d0696b47a58";
-    private final String API_KEY = "483294d5e9b2202317817d0696b47a58";
-    private Button btnOKhttp;
-    private Button btnUrlConnection;
+    private Map<String, String> params = new HashMap<>();
 
-    private Map<String ,String >params = new HashMap<>();
-
+    private RecyclerView recView;
+    private RecNewsAdapter adapter;
+    private List<NewsItem> itemList = new ArrayList<>();
+    private NewsViwModel viwModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
-        initViews();
+        initView();
         initData();
 
 
     }
 
-    private void initData(){
-        params.put("type","top");
-        params.put("key",API_KEY);
-
-
-        Observable.create(new ObservableOnSubscribe<Integer>() {
-            @Override
-            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
-                e.onNext(1000);
-                e.onNext(2000);
-                e.onNext(3000);
-            }
-        }).map(new Function<Integer, String>() {
-            @Override
-            public String apply(Integer integer) throws Exception {
-                return "This is result " + integer;
-            }
-        }).subscribe(new Consumer<String>() {
-            @Override
-            public void accept(String s) throws Exception {
-//                mRxOperatorsText.append("accept : " + s +"\n");
-//                Log.e(TAG, "accept : " + s +"\n" );
-            }
-        });
-
+    private void initView() {
+        recView = findViewById(R.id.rec_news);
+        recView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new RecNewsAdapter(this, itemList);
+        recView.setAdapter(adapter);
     }
 
-    private void initViews(){
-        btnOKhttp =  findViewById(R.id.btn_news);
-        btnOKhttp.setOnClickListener(this);
-        btnUrlConnection = findViewById(R.id.btn_news2);
-        btnUrlConnection.setOnClickListener(this);
+    private void initData() {
+        viwModel = ViewModelProviders.of(this).get(NewsViwModel.class);
+        Observer<List<NewsItem>> observer = newsItems -> {
+            itemList.clear();
+            itemList.addAll(newsItems);
+            adapter.notifyDataSetChanged();
+        };
+        viwModel.builder().
+                getLiveData().
+                observer(this, observer).
+                build().
+                data(NewsViwModel.url);
     }
 
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        if(id == R.id.btn_news){
-            HttpUtils.get(url, new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    Log.e("NEW","e = "+e.toString());
-                }
 
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    Log.e("NEW","response = "+response.toString());
-                }
-            });
-        }else if(id == R.id.btn_news2){
-            new Thread(() -> {
-                    IRequest<String> request = new RequestImp(api,params,null);
-                    NetWorkUtil.urlConnectionGet(request);
-            }).start();
-
-        }
-    }
 }

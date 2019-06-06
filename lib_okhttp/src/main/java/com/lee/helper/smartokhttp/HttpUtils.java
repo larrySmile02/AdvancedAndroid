@@ -1,6 +1,11 @@
 package com.lee.helper.smartokhttp;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -18,5 +23,7 @@ public class HttpUtils
                 get().
                 build();
         client.newCall(request).enqueue(callback);
+
+
     }
 }

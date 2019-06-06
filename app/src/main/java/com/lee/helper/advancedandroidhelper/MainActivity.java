@@ -1,12 +1,16 @@
 package com.lee.helper.advancedandroidhelper;
+
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.os.RemoteException;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.lee.helper.advancedandroidhelper.activity.NewsActivity;
 import com.lee.helper.advancedandroidhelper.activity.ScrollViewActivity;
@@ -19,6 +23,7 @@ import com.lee.helper.advancedandroidhelper.model.IMainActivity;
 import com.lee.helper.advancedandroidhelper.service.MyJobService;
 import com.lee.helper.advancedandroidhelper.service.MyRemoteService;
 import com.lee.helper.advancedandroidhelper.service.MyTestService;
+import com.lee.helper.advancedandroidhelper.service.RometThreadMsg;
 import com.lee.helper.config.ConfigUIActivity;
 import com.lee.helper.recycler.widget.SimpleDividerItemDoceration;
 import com.lee.helper.toast.ToastUtils;
@@ -29,16 +34,39 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends ConfigUIActivity implements IMainActivity {
 
-    /** 默认分割线高度*/
+    /**
+     * 默认分割线高度
+     */
     private final int DEFAUT_DIVIDER_HEIGHT = 8;
     private RecyclerView recView;
     private RecMainAdapter adapter;
-    private String [] items = new String[]{"Config Demo","Toast Demo","RecyclerView Demo","start service","remote","MsgRemote"
-    ,"JobIntentService","slideView","flutterMain","Animator","News"};
+    private final int ROMENT_MSG = 0x1;
+    private String[] items = new String[]{"Config Demo", "Toast Demo", "RecyclerView Demo", "start service", "remote", "MsgRemote"
+            , "JobIntentService", "slideView", "flutterMain", "Animator", "News"};
     private IRemoteInterface mIRemoteInterface;
+
+    private RometThreadMsg rometThreadMsg;
+    private ScheduledExecutorService executorService;
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case ROMENT_MSG:
+                    RemoteMsg msg1 = (RemoteMsg) msg.obj;
+                    executorService.scheduleAtFixedRate( ()-> Log.e("TEST_AIDL",msg1.toString()), 0,1500, TimeUnit.MILLISECONDS);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     @Override
     public int getConfigBase() {
@@ -49,30 +77,36 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initExecutor();
         initViews();
         EventBus.getDefault().register(this);
     }
 
-    private void initViews(){
+    private void initViews() {
         recView = findViewById(R.id.rec);
         List<String> itemList = Arrays.asList(items);
-        adapter = new RecMainAdapter(this,itemList,this);
+        adapter = new RecMainAdapter(this, itemList, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        SimpleDividerItemDoceration decoration = new SimpleDividerItemDoceration(this,DEFAUT_DIVIDER_HEIGHT,R.color.advance_transparent,true);
+        SimpleDividerItemDoceration decoration = new SimpleDividerItemDoceration(this, DEFAUT_DIVIDER_HEIGHT, R.color.advance_transparent, true);
         recView.setLayoutManager(layoutManager);
         recView.addItemDecoration(decoration);
         recView.setAdapter(adapter);
 
     }
 
-    private void  startMyService(){
+    private void initExecutor(){
+        executorService = new ScheduledThreadPoolExecutor(3);
+
+    }
+
+    private void startMyService() {
         Intent intent = new Intent(this, MyTestService.class);
-        intent.putExtra(MyConstant.MARK_TO_SERVICE,"COM FROM INTENT service");
+        intent.putExtra(MyConstant.MARK_TO_SERVICE, "COM FROM INTENT service");
         startService(intent);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void Event(ServiceEvent event){
+    public void Event(ServiceEvent event) {
         ToastUtils.show("Get from Service");
     }
 
@@ -82,11 +116,15 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
         startMyService();
     }
 
+    //这个方法搞的这么复杂是想模仿ActivityThread#ApplicationThread，测试IBinder实例在2个进程内是否同步.
+    //之所以要测试，是因为我不明白system_server进程是如何操控app进程内的逻辑的。
+    //难度比较大，还没有测试成功。
     @Override
     public void onStartRemoteService() {
-        Intent remoteIntent = new Intent(this,MyRemoteService.class);
-        remoteIntent.putExtra(MyConstant.LOVER_NAME,"诗婷");
-        bindService(remoteIntent,conn,BIND_AUTO_CREATE);
+        rometThreadMsg = new RometThreadMsg();
+        Intent remoteIntent = new Intent(this, MyRemoteService.class);
+//        remoteIntent.putExtra(MyConstant.REMOTE_MSG, rometThreadMsg.getConnectBinder());
+        bindService(remoteIntent, conn, BIND_AUTO_CREATE);
 
     }
 
@@ -94,7 +132,7 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     public void onSetRemoteMsg() {
 
         try {
-            RemoteMsg setMsg = new RemoteMsg(666,"佳诺");
+            RemoteMsg setMsg = new RemoteMsg(666, "佳诺");
             mIRemoteInterface.setMsg(setMsg);
             RemoteMsg getMsg = mIRemoteInterface.getMsg();
             ToastUtils.show(getMsg.toString());
@@ -106,8 +144,8 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     @Override
     public void onStartJobIntentService() {
         Intent JonIntent = new Intent(this, MyJobService.class);
-        JonIntent.putExtra(MyConstant.SEXY_GIRL,"吉泽明步");
-        MyJobService.equeue(this,JonIntent);
+        JonIntent.putExtra(MyConstant.SEXY_GIRL, "吉泽明步");
+        MyJobService.equeue(this, JonIntent);
 
     }
 
@@ -140,6 +178,8 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        unbindService(conn);
+        executorService.shutdown();
     }
 
 
@@ -149,12 +189,16 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
             //如果是远程Service，返回的IBinder service是BinderProxy对象
             //如果非远程Service，返回的是IBinder对象，无需AIDL就可直接通信
             RemoteMsg msg = null;
-            if(service != null){
+            if (service != null) {
 
                 try {
                     mIRemoteInterface = IRemoteInterface.Stub.asInterface(service);
                     msg = mIRemoteInterface.getMsg();
-                    if(msg != null)ToastUtils.show(msg.toString());
+                    if (msg != null) ToastUtils.show(msg.toString());
+                    Message rometeMsg = mHandler.obtainMessage();
+                    rometeMsg.what = ROMENT_MSG;
+                    rometeMsg.obj = msg;
+                    mHandler.sendMessage(rometeMsg);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
