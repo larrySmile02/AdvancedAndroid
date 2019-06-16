@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--pivotX : 缩放中心x； pivotY ： 缩放中心y-->
+    <!--pivotX : 缩放中心x； pivotY ： 缩放中心y；
+    以控件左上角为起点，pivotX = 50就是控件起点x坐标+ 50px;
+    pivotX="50%"就是控件宽度的一半-->
     <scale
         android:duration="5000"
         android:fromXScale="1.0"
@@ -10,6 +12,5 @@
         android:toYScale="0"
         android:pivotX="50%"
         android:pivotY="50%"/>
-
 
 </set>

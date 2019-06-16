@@ -12,4 +12,5 @@ public class Constant {
     public static final String FLUTTER_MAIN = "flutterMain";
     public static final String ANIMITOR ="Animator";
     public static final String NEWS="News";
+    public static final String EVENT_TEST = "ViewEvent";
 }

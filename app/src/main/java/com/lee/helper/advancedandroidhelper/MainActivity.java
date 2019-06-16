@@ -16,6 +16,7 @@ import com.lee.helper.advancedandroidhelper.activity.NewsActivity;
 import com.lee.helper.advancedandroidhelper.activity.ScrollViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestAnimatiorActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFlutterViewActivity;
+import com.lee.helper.advancedandroidhelper.activity.ViewEventActivity;
 import com.lee.helper.advancedandroidhelper.adapter.RecMainAdapter;
 import com.lee.helper.advancedandroidhelper.constant.MyConstant;
 import com.lee.helper.advancedandroidhelper.event.ServiceEvent;
@@ -48,7 +49,7 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     private RecMainAdapter adapter;
     private final int ROMENT_MSG = 0x1;
     private String[] items = new String[]{"Config Demo", "Toast Demo", "RecyclerView Demo", "start service", "remote", "MsgRemote"
-            , "JobIntentService", "slideView", "flutterMain", "Animator", "News"};
+            , "JobIntentService", "slideView", "flutterMain", "Animator", "News","ViewEvent","Notification"};
     private IRemoteInterface mIRemoteInterface;
 
     private RometThreadMsg rometThreadMsg;
@@ -175,10 +176,21 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     }
 
     @Override
+    public void gotoEventTest() {
+        Intent intentEvent = new Intent(this, ViewEventActivity.class);
+        startActivity(intentEvent);
+    }
+
+    @Override
+    public void gotoNotifyCation() {
+
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
-        unbindService(conn);
+//        unbindService(conn);
         executorService.shutdown();
     }
 

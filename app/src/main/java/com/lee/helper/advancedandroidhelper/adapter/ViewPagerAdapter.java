@@ -29,17 +29,14 @@ public class ViewPagerAdapter extends PagerAdapter
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        //不能把null换成container,false,否则加载不出来
         View view = inflater.inflate(R.layout.adapter_viewpager,null);
         String title = datas.get(position);
         TextView tvTitle = view.findViewById(R.id.tv_title);
         tvTitle.setText(title);
+        //必须这里add
         container.addView(view);
         return view;
-    }
-
-    @Override
-    public int getCount() {
-        return datas.size();
     }
 
     @Override
@@ -56,5 +53,10 @@ public class ViewPagerAdapter extends PagerAdapter
     @Override
     public CharSequence getPageTitle(int position) {
         return datas.get(position);
+    }
+
+    @Override
+    public int getCount() {
+        return datas.size();
     }
 }

@@ -25,7 +25,7 @@ public class MyCircle extends View
 
     private Rect mBound;
 
-    private String[]name = new String[]{"我","的","晨","chen"};
+    private String[]name = new String[]{"我","的","妹","纸"};
 
     public MyCircle(Context context) {
         this(context,null);

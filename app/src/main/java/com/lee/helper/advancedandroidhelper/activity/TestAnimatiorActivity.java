@@ -108,7 +108,8 @@ public class TestAnimatiorActivity extends AppCompatActivity implements View.OnC
                     viewPropertyAnimator
                             .setDuration(2000)
                             .alpha(0)
-                            .setInterpolator(new AccelerateDecelerateInterpolator());
+                            .setInterpolator(new AccelerateDecelerateInterpolator())
+                            .start();
                     break;
                 case ANIM_SCALE:
                     viewPropertyAnimator
@@ -131,7 +132,8 @@ public class TestAnimatiorActivity extends AppCompatActivity implements View.OnC
                             .scaleY(0)
                             .translationX(100)
                             .translationY(100)
-                            .setInterpolator(new OvershootInterpolator());
+                            .setInterpolator(new OvershootInterpolator())
+                            .start();
                     break;
             }
         }else if(id == R.id.btn_anim_property){
@@ -154,6 +156,7 @@ public class TestAnimatiorActivity extends AppCompatActivity implements View.OnC
                     break;
 
             }
+
             objectAnimator.setDuration(2000);
             objectAnimator.addListener(propertyAnimatorListener);
             objectAnimator.start();
@@ -165,6 +168,7 @@ public class TestAnimatiorActivity extends AppCompatActivity implements View.OnC
             objectAnimator = ObjectAnimator.ofInt(myCircle,"showCount",-1,3);
             objectAnimator.setEvaluator(myElvater);
             objectAnimator.setDuration(3000);
+            objectAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
             objectAnimator.start();
         }else if(id == R.id.btn_circle_mix){
             ToastUtils.show("Waiting");

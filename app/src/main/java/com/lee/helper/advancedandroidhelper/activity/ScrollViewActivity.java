@@ -25,9 +25,11 @@ public class ScrollViewActivity extends AppCompatActivity
         setContentView(R.layout.activity_slide_view);
         scrollTab = findViewById(R.id.horizotal_tab);
         List<String> datas = Arrays.asList(items);
+
         ViewPager viewPager = findViewById(R.id.view_pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(this,datas);
         viewPager.setAdapter(adapter);
+
         scrollTab.setViewPager(viewPager);
 
 

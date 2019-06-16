@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--申明参数的name 和 format-->
     <attr name="custom_height" format="dimension"/>
     <attr name="custom_width" format="dimension" />
     <attr name="custom_line_color" format="color"/>
     <attr name="custom_line_height" format="dimension"/>
 
+    <!--申明参数的归属view-->
     <declare-styleable name="HorizotalScrollTab">
         <attr name="custom_height"/>
         <attr name="custom_width"/>
         <attr name="custom_line_color"/>
         <attr name="custom_line_height"/>
     </declare-styleable>
+
 </resources>

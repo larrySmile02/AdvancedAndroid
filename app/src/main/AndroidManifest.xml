@@ -43,6 +43,22 @@
         <activity android:name=".activity.TestFlutterViewActivity"/>
         <activity android:name=".activity.TestAnimatiorActivity"/>
         <activity android:name=".activity.NewsActivity"/>
+        <activity android:name=".activity.ViewEventActivity"/>
+
+        <receiver android:name=".widgit.AdvanceAppWidget"
+            android:icon="@drawable/ico_lyf">
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidgit_provider_info">
+            </meta-data>
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.advance.APPWIDGET_CLICK"/>
+            </intent-filter>
+
+        </receiver>
 
     </application>
 

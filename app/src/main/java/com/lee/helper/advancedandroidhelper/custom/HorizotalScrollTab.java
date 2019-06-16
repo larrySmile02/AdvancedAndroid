@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.Scroller;
 import android.widget.TextView;
 
 import com.lee.helper.advancedandroidhelper.R;
@@ -35,6 +36,7 @@ public class HorizotalScrollTab extends HorizontalScrollView
     private int glodeselectedPos; //当前选项卡的位置
 
     private Paint linePaint;
+    private Scroller mScroller;
 
     public HorizotalScrollTab(Context context) {
         this(context,null);
@@ -70,7 +72,7 @@ public class HorizotalScrollTab extends HorizontalScrollView
        params.leftMargin = CommonUtil.dp2px(context,15);
        params.rightMargin = CommonUtil.dp2px(context,15);
         viewContainer.setLayoutParams(params);
-//        addAnText(); //用来计算viewContainer默认高度的
+        mScroller = new Scroller(context);
         addView(viewContainer);
     }
 
@@ -127,18 +129,6 @@ public class HorizotalScrollTab extends HorizontalScrollView
 
     }
 
-    private void addAnText(){
-        TextView tv = new TextView(HorizotalScrollTab.this.getContext());
-        String title = ALL ;
-        tv.setText(title);
-        tv.setTextSize(16);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.leftMargin = CommonUtil.dp2px(HorizotalScrollTab.this.getContext(),5);
-        params.rightMargin = CommonUtil.dp2px(HorizotalScrollTab.this.getContext(),5);
-        tv.setGravity(Gravity.CENTER);
-        tv.setLayoutParams(params);
-        viewContainer.addView(tv);
-    }
 
     private void addChildrenView(){
         if(viewPager != null){
@@ -197,5 +187,20 @@ public class HorizotalScrollTab extends HorizontalScrollView
         int newScrollX = (int) ((selectedWidth + nextWidth)*offset /2 + startScrollX);
         scrollTo(startScrollX,0);
 
+    }
+
+    private void smoothScrollToChild(int pos, float offset){
+        View selectedView = viewContainer.getChildAt(pos);
+        int selectedWidth = selectedView.getWidth();
+        View nextView = null;
+        int nextWidth = 0;
+        if(viewContainer.getChildCount() > pos){
+            nextView = viewContainer.getChildAt(pos);
+            nextWidth = nextView.getWidth();
+        }
+        int startScrollX = getScrollX();
+        int desScrollX = selectedView.getLeft() + (selectedWidth / 2)- (HorizotalScrollTab.this.getWidth() / 2);
+        mScroller.startScroll(startScrollX,0,desScrollX,0,1000);
+        invalidate();
     }
 }

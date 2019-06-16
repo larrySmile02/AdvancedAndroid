@@ -18,4 +18,5 @@
     <string name="anim_circle">Circle</string>
     <string name="anim_circle_text">CircleText</string>
     <string name="anim_circle_mix">CircleMix</string>
+    <string name="click_event">Click to test</string>
 </resources>

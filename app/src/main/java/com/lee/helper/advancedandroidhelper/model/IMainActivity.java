@@ -9,4 +9,6 @@ public interface IMainActivity {
     void gotoFlutterMain();
     void gotoAnimator();
     void gotoNews();
+    void gotoEventTest();
+    void gotoNotifyCation();
 }

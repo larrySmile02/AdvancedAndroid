@@ -36,7 +36,6 @@ public class NewsActivity extends AppCompatActivity {
         initView();
         initData();
 
-
     }
 
     private void initView() {
