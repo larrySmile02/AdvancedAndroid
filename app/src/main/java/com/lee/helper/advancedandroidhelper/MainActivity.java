@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.lee.helper.advancedandroidhelper.activity.NewsActivity;
+import com.lee.helper.advancedandroidhelper.activity.NotificationActivity;
 import com.lee.helper.advancedandroidhelper.activity.ScrollViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestAnimatiorActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFlutterViewActivity;
@@ -183,7 +184,8 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
 
     @Override
     public void gotoNotifyCation() {
-
+        Intent notifyIntent = new Intent(this, NotificationActivity.class);
+        startActivity(notifyIntent);
     }
 
     @Override

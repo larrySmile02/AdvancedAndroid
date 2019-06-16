@@ -76,6 +76,8 @@ public class RecMainAdapter extends RecyclerView.Adapter
                 listener.gotoNews();
             }else if(title.contains(Constant.EVENT_TEST)){
                 listener.gotoEventTest();
+            }else if(title.contains(Constant.NOTIFY_TEST)){
+                listener.gotoNotifyCation();
             }
         });
         if(isOdd(pos) ){

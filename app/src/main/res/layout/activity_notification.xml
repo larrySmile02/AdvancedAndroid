@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_notify"
+        android:background="@drawable/bg_btn"
+        android:text="Notification"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/advance_white"
+        android:layout_gravity="center_horizontal"
+        android:textAllCaps="false"
+        android:layout_width="150dp"
+        android:layout_height="30dp" />
+
+</LinearLayout>

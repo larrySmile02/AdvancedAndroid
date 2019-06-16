@@ -60,6 +60,8 @@
 
         </receiver>
 
+        <activity android:name=".activity.NotificationActivity"/>
+
     </application>
 
 </manifest>
