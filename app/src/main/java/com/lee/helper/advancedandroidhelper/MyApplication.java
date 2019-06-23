@@ -8,7 +8,9 @@ import android.util.Log;
 import com.lee.helper.toast.ToastUtils;
 import com.lee.helper.toast.style.ToastBlackStyle;
 
-public class MyApplication extends Application
+import io.flutter.app.FlutterApplication;
+
+public class MyApplication extends FlutterApplication
 {
     @Override
     public void onCreate() {

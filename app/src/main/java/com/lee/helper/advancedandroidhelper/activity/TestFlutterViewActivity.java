@@ -1,32 +1,52 @@
 package com.lee.helper.advancedandroidhelper.activity;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.LifecycleRegistry;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.view.WindowManager;
+import io.flutter.app.FlutterActivity;
+import io.flutter.view.FlutterNativeView;
+import io.flutter.view.FlutterView;
 
-import com.lee.helper.advancedandroidhelper.R;
 
-import io.flutter.facade.Flutter;
-
-public class TestFlutterViewActivity extends AppCompatActivity
+public class TestFlutterViewActivity extends FlutterActivity implements LifecycleOwner
 {
+    private LifecycleRegistry mLifecycleRegistry;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flutter_test);
-        findViewById(R.id.iv_fab).setOnClickListener(v -> {
-            View flutterView = Flutter.createView(
-                    TestFlutterViewActivity.this,
-                    getLifecycle(),
-                    "route1"
-            );
+        mLifecycleRegistry = new LifecycleRegistry(this);
+        mLifecycleRegistry.markState(Lifecycle.State.CREATED);
 
-            LinearLayout.LayoutParams layout = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            addContentView(flutterView, layout);
-        });
 
+    }
+
+
+    @NonNull
+    @Override
+    public Lifecycle getLifecycle() {
+        return mLifecycleRegistry;
+    }
+
+    @Override
+    public FlutterView createFlutterView(Context context) {
+
+        WindowManager.LayoutParams matchParent = new WindowManager.LayoutParams(-1, -1);
+        FlutterNativeView nativeView = this.createFlutterNativeView();
+        FlutterView flutterView = new FlutterView(this,  null, nativeView);
+        flutterView.setInitialRoute("route1");  //这边可以更改第一次进去的路由界面
+        flutterView.setLayoutParams(matchParent);
+        setContentView(flutterView);
+        return flutterView;
+    }
+
+    @Override
+    public FlutterNativeView createFlutterNativeView() {
+        return null;
     }
 }
