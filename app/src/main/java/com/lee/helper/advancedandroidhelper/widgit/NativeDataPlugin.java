@@ -1,12 +1,15 @@
 package com.lee.helper.advancedandroidhelper.widgit;
 
+import android.util.Log;
+
 import com.lee.helper.toast.ToastUtils;
 
-import io.flutter.plugin.common.BasicMessageChannel;
+import java.util.HashMap;
+import java.util.Map;
+
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.PluginRegistry;
-import io.flutter.plugin.common.StandardMessageCodec;
 
 public class NativeDataPlugin implements MethodChannel.MethodCallHandler {
 
@@ -25,6 +28,10 @@ public class NativeDataPlugin implements MethodChannel.MethodCallHandler {
     public void onMethodCall(MethodCall methodCall, MethodChannel.Result result) {
 
         if(methodCall.method.equals(NEWS_DATA)){
+            Log.e("NativeData","echo<--");
+            Map<String,String> resutMap = new HashMap<>();
+            resutMap.put("result","I want u!!!");
+            result.success(resutMap);
             ToastUtils.show("NEWS_DATA,Success!!!");
         }
     }

@@ -2,6 +2,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(_widgetForRoute(window.defaultRouteName));
 
@@ -18,6 +19,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+   
+
     return MaterialApp(
       title: 'Flutter Test',
       theme: ThemeData(
@@ -38,9 +41,21 @@ class MyApp extends StatelessWidget {
             ),
             centerTitle: true,
           ),
-          body: ListItemPage()
+          body: ListItemPage(),
+          floatingActionButton: FloatingActionButton(onPressed: ()=>getNativeData()),
       ),
     );
+  }
+
+  void getNativeData() async{
+    print("NativeData: Get-->");
+    const String NEWS_DATA = "news_data";
+    const String CHANNEL = "com.mmd.flutterapp/plugin";
+    const MethodChannel channel = MethodChannel(CHANNEL);
+    Map<String ,String> map = {"data":"data from dart"};
+    Map result = await channel.invokeMapMethod(NEWS_DATA,map);
+    print("NativeData: result = "+result.toString());
+
   }
 }
 
@@ -72,7 +87,7 @@ class ListItemPage extends StatelessWidget {
             fit: BoxFit.fitWidth,
           ),
           new Text(
-            "这是超越小妹妹，有人说她是锦鲤，确实是个漂亮的小姑娘，其实她是我的女朋友你们都不知道",
+            "超越小妹妹是锦鲤",
           )
         ],
       ),
