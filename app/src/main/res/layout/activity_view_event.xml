@@ -15,6 +15,12 @@
         android:text="@string/click_event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_reflect"
+        app:layout_constraintTop_toBottomOf="@+id/btn_resume"
+        android:text="test reflect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <ImageView
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,5 +44,14 @@
         android:scaleType="fitXY"
         android:layout_width="50dp"
         android:layout_height="50dp" />
+
+    <TextView
+        android:id="@+id/tv_reflect"
+        android:text="REFLECT"
+        android:gravity="center"
+        android:textColor="@color/advance_black"
+        app:layout_constraintTop_toBottomOf="@+id/iv_check_gray2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </android.support.constraint.ConstraintLayout>

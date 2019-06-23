@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.lee.helper.advancedandroidhelper.R;
 
@@ -25,8 +27,10 @@ public class ViewEventActivity extends AppCompatActivity
     public static final String iconUrl = "https://images.tuyaeu.com/smart/icon/15538087493hxt7ei3r21_0.png";
     private Button btnEvent;
     private Button btnResume;
+    private Button btnReflect;
     private ImageView ivResume;
     private ImageView ivCheck;
+    private TextView tvReflect;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +39,11 @@ public class ViewEventActivity extends AppCompatActivity
         btnResume = findViewById(R.id.btn_resume);
         ivCheck = findViewById(R.id.iv_check_gray);
         ivResume = findViewById(R.id.iv_check_gray2);
+        btnReflect = findViewById(R.id.btn_reflect);
+        tvReflect = findViewById(R.id.tv_reflect);
+        btnReflect.setOnClickListener(v -> {
+            tvReflect.setTypeface(null, Typeface.BOLD);
+        });
 
         btnEvent.setOnClickListener(v -> {
             Bitmap bitmapOrigin = getOriginBitMap();
@@ -58,6 +67,7 @@ public class ViewEventActivity extends AppCompatActivity
         btnResume.setOnClickListener(v -> {
             toGrayStyle(ivResume);
         });
+
 
     }
 

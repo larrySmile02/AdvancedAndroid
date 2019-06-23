@@ -35,7 +35,15 @@ public class AdvanceAppWidget extends AppWidgetProvider {
             appWidgetManager.updateAppWidget(widgetId,remoteViews);
         }
 
-        Log.e("ADVANCE_WIDGIT","onUpdate <==>");
+        if(appWidgetIds != null && appWidgetIds.length > 0){
+            StringBuilder builder = new StringBuilder();
+            for(int i = 0; i< appWidgetIds.length; i++){
+                builder.append(appWidgetIds[i]);
+                builder.append("-->");
+            }
+            Log.e("ADVANCE_WIDGIT","onUpdate <==>"+builder.toString());
+        }
+
     }
 
     /**appWidget从桌面移除后先调用，仅一次*/

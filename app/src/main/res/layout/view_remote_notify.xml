@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="40dp">
+
+    <ImageView
+        android:id="@+id/iv_warning"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/adv_warn_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
+    <TextView
+        android:id="@+id/tv_remote_notify"
+        android:text="我的超越小妹妹来啦！！！"
+        android:textSize="16sp"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/advance_black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

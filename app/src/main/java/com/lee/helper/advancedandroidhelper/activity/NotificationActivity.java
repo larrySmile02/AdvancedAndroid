@@ -10,10 +10,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RemoteViews;
 
 import com.lee.helper.advancedandroidhelper.R;
 
@@ -29,6 +29,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
     public static final CharSequence CHANNEL_NAME  = "超越小妹妹";
     private int CHANNEL_IMPORTANCE = NotificationManager.IMPORTANCE_HIGH;
     private String CHANNEL_ID = "ID_CHAOYUE";
+    private RemoteViews remoteViews;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,14 +49,21 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
             addChannel();
         }
 
-        //这里以后做兼容，导入androidx
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this).
-                setSmallIcon(R.mipmap.ic_launcher_round).
-                setContentTitle("标题:notifyDemo").
-                setContentText("内容 ：测试notify").
-                setContentIntent(pendingIntent).
-                setChannelId(CHANNEL_ID);
+        remoteViews = new RemoteViews(getPackageName(),R.layout.view_remote_notify);
+        remoteViews.setTextViewText(R.id.tv_remote_notify,"我的佐佐木希来啦~");
 
+        //这里以后做兼容，导入androidx
+//        Notification.Builder builder = new Notification.Builder(this).
+//                setSmallIcon(R.mipmap.ic_launcher_round).
+//                setContentTitle("标题:notifyDemo").
+//                setContentText("内容 ：测试notify").
+//                setContentIntent(pendingIntent);
+
+        Notification.Builder builder = new Notification.Builder(this);
+        builder.setSmallIcon(R.mipmap.ic_launcher_round).
+                setContentIntent(pendingIntent).
+                setContent(remoteViews);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) builder.setChannelId(CHANNEL_ID);
         notification = builder.build();
     }
 
