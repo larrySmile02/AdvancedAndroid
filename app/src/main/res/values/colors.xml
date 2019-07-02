@@ -10,5 +10,6 @@
     <color name="advance_red_theme">#EE4000</color>
     <color name="advance_f0fffff">#F0FFFF</color>
     <color name="advance_transparent">#00000000</color>
+    <color name="colorTheme">#ffce3d3a</color>
 
 </resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/nbo_drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/nav_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/colorTheme">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/iv_title_menu"
+                android:layout_width="23dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/titlebar_menu" />
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/navigation_view"
+                android:textColor="@color/advance_white"
+                android:textSize="18sp" />
+
+
+        </android.support.v7.widget.Toolbar>
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="200dp"
+            android:text="@string/navigation_view"
+            android:textColor="@color/advance_black"
+            android:textSize="18dp" />
+
+
+    </LinearLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        app:headerLayout="@layout/nav_header_menu"
+        android:layout_gravity="start"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</android.support.v4.widget.DrawerLayout>

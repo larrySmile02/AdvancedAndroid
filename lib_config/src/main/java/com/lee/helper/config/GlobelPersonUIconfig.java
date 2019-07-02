@@ -57,6 +57,7 @@ public class GlobelPersonUIconfig {
         //huawei p20不包括状态栏和导航栏的可用高度,但是huawei P8上appDisplayMetric.heightPixels应该是包含了状态栏，所以无法适配。
         //我觉得这是硬件的bug，难以完美兼容，放弃研究
         float validHeight = 1f * appDisplayMetric.heightPixels;
+        Log.e("CONFIG_A","validHeight = "+validHeight);
         final float targetDensity = validHeight / 640;
         final float targetScaleDensity = targetDensity * (sNonCompatScaleDesity / sNonCompatDesity);
         final int targetDensityDpi = (int) (160 * targetDensity);

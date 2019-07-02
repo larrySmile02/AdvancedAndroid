@@ -11,4 +11,6 @@ public interface IMainActivity {
     void gotoNews();
     void gotoEventTest();
     void gotoNotifyCation();
+    void getStoragePermission();
+    void gotoNavigationViewActivity();
 }

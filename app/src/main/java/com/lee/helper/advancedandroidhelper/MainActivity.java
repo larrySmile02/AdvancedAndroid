@@ -1,5 +1,6 @@
 package com.lee.helper.advancedandroidhelper;
 
+import android.Manifest;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -12,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.lee.helper.advancedandroidhelper.activity.NavigationViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.NewsActivity;
 import com.lee.helper.advancedandroidhelper.activity.NotificationActivity;
 import com.lee.helper.advancedandroidhelper.activity.ScrollViewActivity;
@@ -27,8 +29,11 @@ import com.lee.helper.advancedandroidhelper.service.MyRemoteService;
 import com.lee.helper.advancedandroidhelper.service.MyTestService;
 import com.lee.helper.advancedandroidhelper.service.RometThreadMsg;
 import com.lee.helper.config.ConfigUIActivity;
+import com.lee.helper.config.GlobelActivityConfig;
 import com.lee.helper.recycler.widget.SimpleDividerItemDoceration;
 import com.lee.helper.toast.ToastUtils;
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -40,6 +45,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.functions.Consumer;
+
 public class MainActivity extends ConfigUIActivity implements IMainActivity {
 
     /**
@@ -50,7 +57,7 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     private RecMainAdapter adapter;
     private final int ROMENT_MSG = 0x1;
     private String[] items = new String[]{"Config Demo", "Toast Demo", "RecyclerView Demo", "start service", "remote", "MsgRemote"
-            , "JobIntentService", "slideView", "flutterMain", "Animator", "News","ViewEvent","Notification"};
+            , "JobIntentService", "slideView", "flutterMain", "Animator", "RxPermission ", "News", "ViewEvent", "Notification","NavigationView"};
     private IRemoteInterface mIRemoteInterface;
 
     private RometThreadMsg rometThreadMsg;
@@ -62,7 +69,7 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
             switch (msg.what) {
                 case ROMENT_MSG:
                     RemoteMsg msg1 = (RemoteMsg) msg.obj;
-                    executorService.scheduleAtFixedRate( ()-> Log.e("TEST_AIDL",msg1.toString()), 0,1500, TimeUnit.MILLISECONDS);
+                    executorService.scheduleAtFixedRate(() -> Log.e("TEST_AIDL", msg1.toString()), 0, 1500, TimeUnit.MILLISECONDS);
                     break;
                 default:
                     break;
@@ -82,6 +89,13 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
         initExecutor();
         initViews();
         EventBus.getDefault().register(this);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobelActivityConfig.fitBasedHeight(this);
     }
 
     private void initViews() {
@@ -96,7 +110,7 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
 
     }
 
-    private void initExecutor(){
+    private void initExecutor() {
         executorService = new ScheduledThreadPoolExecutor(3);
 
     }
@@ -186,6 +200,31 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     public void gotoNotifyCation() {
         Intent notifyIntent = new Intent(this, NotificationActivity.class);
         startActivity(notifyIntent);
+    }
+
+    @Override
+    public void getStoragePermission() {
+        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.requestEach(permissions).
+                subscribe(new Consumer<Permission>() {
+                    @Override
+                    public void accept(Permission permission) throws Exception {
+                        if (permission.granted) {
+                            //权限通过
+                            ToastUtils.show("Permission Granted");
+                        } else if (permission.shouldShowRequestPermissionRationale) {
+                            ToastUtils.show("Permission shouldShowRequestPermissionRationale");
+                        } else {
+                            ToastUtils.show("Permission Refuse");
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void gotoNavigationViewActivity() {
+        startActivity(new Intent(this, NavigationViewActivity.class));
     }
 
     @Override

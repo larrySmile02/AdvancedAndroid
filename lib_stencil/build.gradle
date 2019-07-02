@@ -29,10 +29,15 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "com.android.support:appcompat-v7:${ext.appcompatVersion}"
-    api "io.reactivex.rxjava2:rxjava:${ext.rxjavaVersion}"
-    api "io.reactivex.rxjava2:rxandroid:${rxandroidVersion}"
+//    api "io.reactivex.rxjava2:rxjava:${ext.rxjavaVersion}"
+//    api "io.reactivex.rxjava2:rxandroid:${rxandroidVersion}"
+    api ("com.jakewharton.rxbinding3:rxbinding:${rxBindingVersion}"){
+        exclude group:'androidx.annotation',module:'annotation'
+    }
+    api "com.tbruyelle.rxpermissions2:rxpermissions:${rxPermissionVersion}"
     api "org.greenrobot:eventbus:${eventbusVersion}"
     api 'com.google.code.gson:gson:2.8.5'
     api "com.android.support:cardview-v7:${ext.cardviewVersion}"
     api "android.arch.lifecycle:extensions:${ext.lifecycleExtensionVersion}"
+    api "com.android.support:design:${ext.SUPPORTVERSION}"
 }

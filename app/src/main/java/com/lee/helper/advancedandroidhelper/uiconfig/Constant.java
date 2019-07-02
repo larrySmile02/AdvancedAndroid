@@ -14,4 +14,6 @@ public class Constant {
     public static final String NEWS="News";
     public static final String EVENT_TEST = "ViewEvent";
     public static final String NOTIFY_TEST = "Notification";
+    public static final String RXPERMISSION = "RxPermission";
+    public static final String NAVIGATIONVIEW="NavigationView";
 }

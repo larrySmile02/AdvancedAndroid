@@ -19,4 +19,13 @@
     <string name="anim_circle_text">CircleText</string>
     <string name="anim_circle_mix">CircleMix</string>
     <string name="click_event">Click to test</string>
+    <string name="navigation_view">Navigation View</string>
+
+    <string name="ka_device_list">设备列表</string>
+    <string name="ka_add_device">添加设备</string>
+    <string name="ka_device_share">设备分享</string>
+    <string name="ka_user_faq">使用反馈</string>
+    <string name="ka_account_set">账号设置</string>
+    <string name="ka_third_use">连接第三方说明</string>
+    <string name="ka_help">帮助</string>
 </resources>

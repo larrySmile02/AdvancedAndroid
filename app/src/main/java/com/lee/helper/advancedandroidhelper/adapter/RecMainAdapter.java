@@ -78,6 +78,10 @@ public class RecMainAdapter extends RecyclerView.Adapter
                 listener.gotoEventTest();
             }else if(title.contains(Constant.NOTIFY_TEST)){
                 listener.gotoNotifyCation();
+            }else if(title.contains(Constant.RXPERMISSION)){
+                listener.getStoragePermission();
+            }else if(title.contains(Constant.NAVIGATIONVIEW)){
+                listener.gotoNavigationViewActivity();
             }
         });
         if(isOdd(pos) ){
