@@ -11,5 +11,7 @@
     <color name="advance_f0fffff">#F0FFFF</color>
     <color name="advance_transparent">#00000000</color>
     <color name="colorTheme">#ffce3d3a</color>
+    <color name="advance_DDDDDD">#DDDDDD</color>
+    <color name="advance_5F7DB4">#5F7DB4</color>
 
 </resources>

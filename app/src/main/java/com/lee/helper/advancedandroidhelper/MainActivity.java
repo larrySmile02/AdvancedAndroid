@@ -19,6 +19,7 @@ import com.lee.helper.advancedandroidhelper.activity.NotificationActivity;
 import com.lee.helper.advancedandroidhelper.activity.ScrollViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestAnimatiorActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFlutterViewActivity;
+import com.lee.helper.advancedandroidhelper.activity.TestOvalViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.ViewEventActivity;
 import com.lee.helper.advancedandroidhelper.adapter.RecMainAdapter;
 import com.lee.helper.advancedandroidhelper.constant.MyConstant;
@@ -57,7 +58,7 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     private RecMainAdapter adapter;
     private final int ROMENT_MSG = 0x1;
     private String[] items = new String[]{"Config Demo", "Toast Demo", "RecyclerView Demo", "start service", "remote", "MsgRemote"
-            , "JobIntentService", "slideView", "flutterMain", "Animator", "RxPermission ", "News", "ViewEvent", "Notification","NavigationView"};
+            , "JobIntentService", "slideView", "flutterMain", "Animator", "RxPermission ", "News", "ViewEvent", "Notification","NavigationView","ovalView"};
     private IRemoteInterface mIRemoteInterface;
 
     private RometThreadMsg rometThreadMsg;
@@ -225,6 +226,11 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     @Override
     public void gotoNavigationViewActivity() {
         startActivity(new Intent(this, NavigationViewActivity.class));
+    }
+
+    @Override
+    public void gotoOvalView() {
+        startActivity(new Intent(this, TestOvalViewActivity.class));
     }
 
     @Override

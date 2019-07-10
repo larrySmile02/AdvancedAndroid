@@ -39,6 +39,7 @@ public class NewsViwModel extends ViewModel {
     public  MutableLiveData<List<NewsItem>> getLiveDataNew(){
         if(liveDataNews == null){
             synchronized (NewsViwModel.class){
+
                 if(liveDataNews == null){
                     liveDataNews = new MutableLiveData<>();
                     gson = new Gson();

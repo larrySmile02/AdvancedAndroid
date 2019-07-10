@@ -13,4 +13,5 @@ public interface IMainActivity {
     void gotoNotifyCation();
     void getStoragePermission();
     void gotoNavigationViewActivity();
+    void gotoOvalView();
 }

@@ -82,6 +82,8 @@ public class RecMainAdapter extends RecyclerView.Adapter
                 listener.getStoragePermission();
             }else if(title.contains(Constant.NAVIGATIONVIEW)){
                 listener.gotoNavigationViewActivity();
+            }else if(title.contains(Constant.OVALVIEW)){
+                listener.gotoOvalView();
             }
         });
         if(isOdd(pos) ){
