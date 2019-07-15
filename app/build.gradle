@@ -10,9 +10,27 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs{
+
+        release{
+            keyAlias 'advance'
+            keyPassword 'advance123'
+            storePassword 'advance123'
+            storeFile file('advancedandroid.jks')
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+
+        debug{
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
