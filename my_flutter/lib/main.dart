@@ -4,6 +4,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'chaoyue.dart';
+
 void main() => runApp(_widgetForRoute(window.defaultRouteName));
 
 Widget _widgetForRoute(String route) {
@@ -11,7 +13,7 @@ Widget _widgetForRoute(String route) {
     case 'route1':
       return MyApp();
     default:
-      return MyApp();
+      return ChaoyueApp();
   }
 }
 

@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.lee.helper.advancedandroidhelper.activity.NativeGetDataActivity;
 import com.lee.helper.advancedandroidhelper.activity.NavigationViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.NewsActivity;
 import com.lee.helper.advancedandroidhelper.activity.NotificationActivity;
@@ -175,7 +176,7 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     @Override
     public void gotoFlutterMain() {
 
-        Intent flutterIntent = new Intent(this, TestFlutterViewActivity.class);
+        Intent flutterIntent = new Intent(this, NativeGetDataActivity.class);
         startActivity(flutterIntent);
     }
 

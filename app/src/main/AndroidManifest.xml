@@ -66,6 +66,7 @@
         <activity android:name=".activity.NotificationActivity"/>
         <activity android:name=".activity.NavigationViewActivity"/>
         <activity android:name=".activity.TestOvalViewActivity"/>
+        <activity android:name=".activity.NativeGetDataActivity"/>
     </application>
 
 </manifest>

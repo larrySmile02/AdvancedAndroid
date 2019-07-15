@@ -1,0 +1,56 @@
+package com.lee.helper.advancedandroidhelper.activity;
+
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.LifecycleRegistry;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.util.Log;
+import android.view.WindowManager;
+
+
+import com.lee.helper.advancedandroidhelper.flutter.plugin.FlutterNativeDataPlugin;
+
+import io.flutter.app.FlutterActivity;
+import io.flutter.view.FlutterNativeView;
+import io.flutter.view.FlutterView;
+
+public class NativeGetDataActivity extends FlutterActivity implements LifecycleOwner {
+
+    private LifecycleRegistry mLifecycleRegistry;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        FlutterNativeDataPlugin.registerWith(this.registrarFor(FlutterNativeDataPlugin.CHANNEL));
+        mLifecycleRegistry = new LifecycleRegistry(this);
+        mLifecycleRegistry.markState(Lifecycle.State.CREATED);
+        Log.e("CHAOYUEMM","ONCREATE-->");
+
+    }
+
+    @NonNull
+    @Override
+    public Lifecycle getLifecycle() {
+        return mLifecycleRegistry;
+    }
+
+    @Override
+    public FlutterView createFlutterView(Context context) {
+
+        WindowManager.LayoutParams matchParent = new WindowManager.LayoutParams(-1, -1);
+        FlutterNativeView nativeView = this.createFlutterNativeView();
+        FlutterView flutterView = new FlutterView(this,  null, nativeView);
+        flutterView.setInitialRoute("chaoyueRoute");  //这边可以更改第一次进去的路由界面
+        flutterView.setLayoutParams(matchParent);
+        setContentView(flutterView);
+        return flutterView;
+    }
+
+    @Override
+    public FlutterNativeView createFlutterNativeView() {
+        return null;
+    }
+}
