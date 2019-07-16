@@ -1,52 +1,17 @@
 
+
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_flutter/bean/NewsBean.dart';
+import 'package:my_flutter/network/HttpUtil.dart';
 
-import 'bean/NewsBean.dart';
-import 'network/HttpUtil.dart';
+class FashionNewsPage extends StatefulWidget {
+  FashionNewsPage({Key key, this.title}) : super(key: key);
 
-class ChaoyueApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-
-
-    return MaterialApp(
-      title: 'FlutterChaoyue',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or press Run > Flutter Hot Reload in a Flutter IDE). Notice that the
-        // counter didn't reset back to zero; the application is not restarted.
-        primarySwatch: Colors.red,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "超越小妹妹",
-          ),
-          centerTitle: true,
-        ),
-        body: MainNewsPage(title: '超越MM'),
-      ),
-    );
-  }
-
-
-}
-
-
-
-class MainNewsPage extends StatefulWidget {
-  MainNewsPage({Key key, this.title}) : super(key: key);
-
+  static final String sName = "FashionNewsPage";
   final String title;
 
   @override
@@ -56,7 +21,7 @@ class MainNewsPage extends StatefulWidget {
   }
 }
 
-class NewsState extends State<MainNewsPage> {
+class NewsState extends State<FashionNewsPage> {
   List<NewsItem> _list = new List();
 
   @override
@@ -65,6 +30,7 @@ class NewsState extends State<MainNewsPage> {
     super.initState();
 //    getNewsData();
     getNativeData();
+    getSimpleNativeData();
 
   }
 
@@ -72,7 +38,7 @@ class NewsState extends State<MainNewsPage> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-//      appBar: AppBar(title: Text(widget.title)),
+      appBar: AppBar(title: Text(widget.title)),
       body: ListView.builder(
           itemCount: _list.length,
           itemBuilder: (context, index) {
@@ -81,7 +47,7 @@ class NewsState extends State<MainNewsPage> {
     );
   }
 
- void getNativeData() async {
+  void getNativeData() async {
     print("NativeData: Get-->");
     const String NEWS_DATA = "news_data";
     const String CHANNEL = "com.mmd.flutterapp/plugin";
@@ -95,6 +61,15 @@ class NewsState extends State<MainNewsPage> {
     setCountValue(nativeItems);
 
 
+  }
+
+  void getSimpleNativeData() async{
+    const String CHAOYUE = "chao_yue";
+    const String CHANNEL = "com.mmd.flutterapp/plugin";
+    const MethodChannel simpleChannel =  MethodChannel(CHANNEL);
+    Map<String ,String> requestMap = {"data":"simple"};
+    Map<String ,dynamic> simpleMap = await simpleChannel.invokeMapMethod(CHAOYUE,requestMap);
+    print("SIMPLE_DATA = "+simpleMap.toString());
   }
 
   void getNewsData() async {

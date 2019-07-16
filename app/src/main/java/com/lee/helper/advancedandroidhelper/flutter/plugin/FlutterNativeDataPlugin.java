@@ -44,8 +44,6 @@ public class FlutterNativeDataPlugin implements MethodChannel.MethodCallHandler 
     public void onMethodCall(MethodCall methodCall, MethodChannel.Result result) {
 
         if(methodCall.method.equals(NEWS_DATA)){
-            Log.e("NativeData","echo<--");
-
 
             FlutterNetWokUtil.get(NewsApi.NewsApi, new Callback() {
                 @Override
@@ -64,14 +62,13 @@ public class FlutterNativeDataPlugin implements MethodChannel.MethodCallHandler 
 
 
         }else if(methodCall.method.equals(CHAO_YUE)){
-            Log.e("NativeData","CHAOYUE<--");
+            Log.e("SIMPLE_DATA" , "argue = "+methodCall.argument("data").toString());
             if(mActivity != null){
-                Intent intent = new Intent(mActivity, NativeGetDataActivity.class);
-                mActivity.startActivity(intent);
-                resutMap.clear();
-                resutMap.put("result","success");
+//                Intent intent = new Intent(mActivity, NativeGetDataActivity.class);
+//                mActivity.startActivity(intent);
+//                resutMap.clear();
+                resutMap.put("result","get_simple_data_success");
                 result.success(resutMap);
-                Log.e("NativeData","jump");
             }
 
         }

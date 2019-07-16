@@ -43,7 +43,7 @@ public class NativeGetDataActivity extends FlutterActivity implements LifecycleO
         WindowManager.LayoutParams matchParent = new WindowManager.LayoutParams(-1, -1);
         FlutterNativeView nativeView = this.createFlutterNativeView();
         FlutterView flutterView = new FlutterView(this,  null, nativeView);
-        flutterView.setInitialRoute("chaoyueRoute");  //这边可以更改第一次进去的路由界面
+        flutterView.setInitialRoute("ResetPwdPage");
         flutterView.setLayoutParams(matchParent);
         setContentView(flutterView);
         return flutterView;
