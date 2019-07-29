@@ -32,9 +32,9 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
-            zipAlignEnabled true
-            shrinkResources false
+            minifyEnabled true   //打开混淆，对代码进行压缩
+            zipAlignEnabled true //优化apk,对资源文件对齐处理，访问对齐处理过的文件更快
+            shrinkResources false //对资源进行压缩，和minifyEnable协同使用
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
