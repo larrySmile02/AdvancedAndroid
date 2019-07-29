@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_flutter/style/TYStyle.dart';
 import 'package:my_flutter/widgets/CardItem.dart';
+import 'package:my_flutter/widgets/YiFeiLocalization.dart';
 
 class ChooseDialog extends StatefulWidget {
   final String dialogTitle;
@@ -64,7 +65,7 @@ class _ChooseDialogState extends State<ChooseDialog> {
                               padding: EdgeInsets.all(4.0),
                               constraints: const BoxConstraints(
                                   minWidth: 0.0, minHeight: 0.0),
-                              child: new Text("取消",
+                              child: new Text(YiFeiLocalization.of(context).cancel,
                                   style: TYConstant.normalSubText),
                               onPressed: widget.cancelPressed)),
                       new Container(
@@ -80,7 +81,7 @@ class _ChooseDialogState extends State<ChooseDialog> {
                               padding: EdgeInsets.all(4.0),
                               constraints: const BoxConstraints(
                                   minWidth: 0.0, minHeight: 0.0),
-                              child: new Text("确认",
+                              child: new Text(YiFeiLocalization.of(context).confirm,
                                   style: TYConstant.normalTextBold),
                               onPressed: widget.confirmPressed)),
                     ],

@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:my_flutter/pages/FashionNewsPage.dart';
-import 'package:my_flutter/pages/ResetPwdPage.dart';
+import 'package:my_flutter/pages/ForgotPwdPage.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:my_flutter/widgets/YiFeiLocalizationDelegate.dart';
 
 
 void main() => runApp(MyApp());
@@ -20,15 +22,28 @@ class MyApp extends StatelessWidget {
             hintStyle: TextStyle(color: Color(0x99A2A3AA),fontSize: 16)
           )
         ),
+
+        //多语言支持
+        localizationsDelegates:  [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          YiFeiLocalizationDelegate.delegate,
+        ],
+        supportedLocales: [
+          const Locale('en', 'US'), // 美国英语
+          const Locale('zh', 'CN'), // 中文简体
+
+        ],
+
         routes: {
-          ResetPwdPage.sName: (context) {
-            return ResetPwdPage();
+          ForgotPwdPage.sName: (context) {
+            return ForgotPwdPage();
           },
           FashionNewsPage.sName: (context) {
             return FashionNewsPage(title: 'Fashion News');
           },
-          ResetPwdPage.sDefaut: (context) {
-            return ResetPwdPage();
+          ForgotPwdPage.sDefaut: (context) {
+            return ForgotPwdPage();
           }
         });
   }

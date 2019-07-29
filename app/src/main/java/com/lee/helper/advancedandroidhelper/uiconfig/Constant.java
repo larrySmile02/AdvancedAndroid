@@ -17,4 +17,6 @@ public class Constant {
     public static final String RXPERMISSION = "RxPermission";
     public static final String NAVIGATIONVIEW="NavigationView";
     public static final String OVALVIEW = "ovalView";
+    public static final String VIEWPAGERADAPTER="ViewPagerAdapter";
+    public static final String TESTFRAGMENT="TestFragment";
 }

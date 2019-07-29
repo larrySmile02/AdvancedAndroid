@@ -84,6 +84,10 @@ public class RecMainAdapter extends RecyclerView.Adapter
                 listener.gotoNavigationViewActivity();
             }else if(title.contains(Constant.OVALVIEW)){
                 listener.gotoOvalView();
+            }else if(title.contains(Constant.VIEWPAGERADAPTER)){
+                listener.gotoViewPager();
+            }else if(title.contains(Constant.TESTFRAGMENT)){
+                listener.gotoTestFragment();
             }
         });
         if(isOdd(pos) ){

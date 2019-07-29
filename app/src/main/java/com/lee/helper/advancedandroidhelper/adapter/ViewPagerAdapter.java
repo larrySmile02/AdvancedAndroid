@@ -39,6 +39,7 @@ public class ViewPagerAdapter extends PagerAdapter
         return view;
     }
 
+
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
         return view == o;

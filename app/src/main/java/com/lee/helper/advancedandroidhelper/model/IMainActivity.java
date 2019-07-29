@@ -14,4 +14,6 @@ public interface IMainActivity {
     void getStoragePermission();
     void gotoNavigationViewActivity();
     void gotoOvalView();
+    void gotoViewPager();
+    void gotoTestFragment();
 }

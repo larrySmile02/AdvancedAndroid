@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_flutter/dialog/ChooseDialog.dart';
+import 'package:my_flutter/widgets/YiFeiLocalization.dart';
 
-class ResetPwdPage extends StatefulWidget {
-  static String sName = "ResetPwdPage";
+class ForgotPwdPage extends StatefulWidget {
+  static String sName = "ForgotPwdPage";
   static final String sDefaut = "/";
 
   @override
@@ -13,18 +14,27 @@ class ResetPwdPage extends StatefulWidget {
   }
 }
 
-class NboForgetPwdState extends State<ResetPwdPage> {
+class NboForgetPwdState extends State<ForgotPwdPage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      appBar: PreferredSize(
+          child: AppBar(
+            backgroundColor: Colors.white,
+            leading: Builder(builder: (BuildContext context){
+//              return Image.asset('assets/3.0x/yf_hb_back_icon.png',height: 12,width: 12,fit: BoxFit.contain,);
+              return IconButton(
+                  icon: Icon(Icons.arrow_back));
+            }),), 
+          preferredSize: Size.fromHeight(44.0)),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.fromLTRB(24, 44, 0, 0),
+            margin: EdgeInsets.fromLTRB(24, 24, 0, 0),
             child: Text(
-              '重设密码',
+              YiFeiLocalization.of(context).forgetPwd,
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 34,
@@ -35,7 +45,7 @@ class NboForgetPwdState extends State<ResetPwdPage> {
             margin: EdgeInsets.fromLTRB(24, 24, 24, 0),
             child: TextField(
               decoration: InputDecoration(
-                  hintText: '密码至少6位，需要包含数字和字母',
+                  hintText: YiFeiLocalization.of(context).forgetHint,
                   hintStyle: TextStyle(color: Color(0x99A2A3AA))),
             ),
           ),
@@ -52,12 +62,12 @@ class NboForgetPwdState extends State<ResetPwdPage> {
                       onPressed: () => {
                         showDialog(context: context,
                         builder: (BuildContext context){
-                          return Center(child: ChooseDialog('用户还未注册过，是否直接注册？',(){Navigator.pop(context);},(){}));
+                          return Center(child: ChooseDialog(YiFeiLocalization.of(context).unRegister,(){Navigator.pop(context);},(){}));
                         })
 
 
                       },
-                      child: Text('完成',
+                      child: Text(YiFeiLocalization.of(context).verifyCode,
                           style: TextStyle(color: Colors.white, fontSize: 16)),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24.0)),

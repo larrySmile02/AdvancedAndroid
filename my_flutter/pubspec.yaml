@@ -24,9 +24,14 @@ dependencies:
   flutter:
     sdk: flutter
 
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
+
+  #国际化
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -86,3 +91,6 @@ flutter:
   module:
     androidPackage: com.example.my_flutter
     iosBundleIdentifier: com.example.myFlutter
+
+  assets:
+  - assets/3.0x/yf_hb_back_icon.png

@@ -20,6 +20,8 @@ import com.lee.helper.advancedandroidhelper.activity.NotificationActivity;
 import com.lee.helper.advancedandroidhelper.activity.ScrollViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestAnimatiorActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFlutterViewActivity;
+import com.lee.helper.advancedandroidhelper.activity.TestFragmentActivity;
+import com.lee.helper.advancedandroidhelper.activity.TestFragmentPagerActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestOvalViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.ViewEventActivity;
 import com.lee.helper.advancedandroidhelper.adapter.RecMainAdapter;
@@ -59,7 +61,7 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     private RecMainAdapter adapter;
     private final int ROMENT_MSG = 0x1;
     private String[] items = new String[]{"Config Demo", "Toast Demo", "RecyclerView Demo", "start service", "remote", "MsgRemote"
-            , "JobIntentService", "slideView", "flutterMain", "Animator", "RxPermission ", "News", "ViewEvent", "Notification","NavigationView","ovalView"};
+            , "JobIntentService", "slideView", "flutterMain", "Animator", "RxPermission ", "News", "ViewEvent", "Notification","NavigationView","ovalView","ViewPagerAdapter","TestFragment"};
     private IRemoteInterface mIRemoteInterface;
 
     private RometThreadMsg rometThreadMsg;
@@ -232,6 +234,16 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     @Override
     public void gotoOvalView() {
         startActivity(new Intent(this, TestOvalViewActivity.class));
+    }
+
+    @Override
+    public void gotoViewPager() {
+        startActivity(new Intent(this, TestFragmentPagerActivity.class));
+    }
+
+    @Override
+    public void gotoTestFragment() {
+        startActivity(new Intent(this, TestFragmentActivity.class));
     }
 
     @Override

@@ -67,6 +67,8 @@
         <activity android:name=".activity.NavigationViewActivity"/>
         <activity android:name=".activity.TestOvalViewActivity"/>
         <activity android:name=".activity.NativeGetDataActivity"/>
+        <activity android:name=".activity.TestFragmentPagerActivity"/>
+        <activity android:name=".activity.TestFragmentActivity"/>
     </application>
 
 </manifest>
