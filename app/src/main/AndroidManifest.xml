@@ -5,7 +5,6 @@
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -19,7 +18,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="false"
+        android:supportsRtl="true"
+        tools:replace="android:supportsRtl,allowBackup"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -69,6 +69,11 @@
         <activity android:name=".activity.NativeGetDataActivity"/>
         <activity android:name=".activity.TestFragmentPagerActivity"/>
         <activity android:name=".activity.TestFragmentActivity"/>
+        <activity android:name="com.lee.helper.recycler.RecDevInfoActivity"/>
+        <activity android:name=".activity.TestSharedPreferenceActivity"/>
+        <!--<activity android:name=".activity.TestFrescoActivity"/>-->
+        <activity android:name=".activity.TestGenerateImageActivity"/>
+
     </application>
 
 </manifest>

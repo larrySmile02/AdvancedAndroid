@@ -1,7 +1,11 @@
 package com.lee.helper.advancedandroidhelper.utils;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.WindowManager;
 
 public class CommonUtil
@@ -53,4 +57,21 @@ public class CommonUtil
         return dm.heightPixels;
     }
 
+
+    public static Bitmap getListViewBitmap(RecyclerView listView) {
+        int h = 0;
+        Bitmap bitmap;
+        // 获取listView实际高度
+        for (int i = 0; i < listView.getChildCount(); i++) {
+            h += listView.getChildAt(i).getHeight();
+        }
+        Log.e("CommonUtil", "实际高度:" + h);
+        // 创建对应大小的bitmap
+        bitmap = Bitmap.createBitmap(listView.getWidth(), h,
+                Bitmap.Config.ARGB_8888);
+        final Canvas canvas = new Canvas(bitmap);
+        listView.draw(canvas);
+        Log.e("CommonUtil", "bitmap = " + bitmap.toString());
+        return bitmap;
+    }
 }

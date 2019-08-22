@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -12,6 +14,8 @@ import android.os.RemoteException;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.lee.helper.advancedandroidhelper.activity.NativeGetDataActivity;
 import com.lee.helper.advancedandroidhelper.activity.NavigationViewActivity;
@@ -22,7 +26,9 @@ import com.lee.helper.advancedandroidhelper.activity.TestAnimatiorActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFlutterViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFragmentActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFragmentPagerActivity;
+import com.lee.helper.advancedandroidhelper.activity.TestGenerateImageActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestOvalViewActivity;
+import com.lee.helper.advancedandroidhelper.activity.TestSharedPreferenceActivity;
 import com.lee.helper.advancedandroidhelper.activity.ViewEventActivity;
 import com.lee.helper.advancedandroidhelper.adapter.RecMainAdapter;
 import com.lee.helper.advancedandroidhelper.constant.MyConstant;
@@ -32,6 +38,8 @@ import com.lee.helper.advancedandroidhelper.service.MyJobService;
 import com.lee.helper.advancedandroidhelper.service.MyRemoteService;
 import com.lee.helper.advancedandroidhelper.service.MyTestService;
 import com.lee.helper.advancedandroidhelper.service.RometThreadMsg;
+import com.lee.helper.advancedandroidhelper.utils.CommonUtil;
+import com.lee.helper.advancedandroidhelper.utils.GenerateImageLogic;
 import com.lee.helper.config.ConfigUIActivity;
 import com.lee.helper.config.GlobelActivityConfig;
 import com.lee.helper.recycler.widget.SimpleDividerItemDoceration;
@@ -61,9 +69,10 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     private RecMainAdapter adapter;
     private final int ROMENT_MSG = 0x1;
     private String[] items = new String[]{"Config Demo", "Toast Demo", "RecyclerView Demo", "start service", "remote", "MsgRemote"
-            , "JobIntentService", "slideView", "flutterMain", "Animator", "RxPermission ", "News", "ViewEvent", "Notification","NavigationView","ovalView","ViewPagerAdapter","TestFragment"};
+            , "JobIntentService", "slideView", "flutterMain", "Animator", "RxPermission ", "News", "ViewEvent", "Notification",
+            "NavigationView","ovalView","ViewPagerAdapter","TestFragment","CheckSp","FrescoDemo"};
     private IRemoteInterface mIRemoteInterface;
-
+    private ImageView ivTemp;
     private RometThreadMsg rometThreadMsg;
     private ScheduledExecutorService executorService;
     private Handler mHandler = new Handler() {
@@ -93,6 +102,16 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
         initExecutor();
         initViews();
         EventBus.getDefault().register(this);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Bitmap bitmap = GenerateImageLogic.getIns().shotRecyclerView(recView);
+                Log.e("CommonUtil", "bitmap2 = " + bitmap.toString());
+                if(bitmap != null){
+                    startActivity(new Intent(MainActivity.this, TestGenerateImageActivity.class));
+                }
+            }
+        }, 2000);
 
     }
 
@@ -111,6 +130,8 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
         recView.setLayoutManager(layoutManager);
         recView.addItemDecoration(decoration);
         recView.setAdapter(adapter);
+        ivTemp = findViewById(R.id.iv_temp);
+
 
     }
 
@@ -210,18 +231,12 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     public void getStoragePermission() {
         String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
         RxPermissions rxPermissions = new RxPermissions(this);
-        rxPermissions.requestEach(permissions).
-                subscribe(new Consumer<Permission>() {
+        rxPermissions.
+                request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE).
+                subscribe(new Consumer<Boolean>() {
                     @Override
-                    public void accept(Permission permission) throws Exception {
-                        if (permission.granted) {
-                            //权限通过
-                            ToastUtils.show("Permission Granted");
-                        } else if (permission.shouldShowRequestPermissionRationale) {
-                            ToastUtils.show("Permission shouldShowRequestPermissionRationale");
-                        } else {
-                            ToastUtils.show("Permission Refuse");
-                        }
+                    public void accept(Boolean aBoolean) {
+                        Log.e("rxPermission","granted ==");
                     }
                 });
     }
@@ -244,6 +259,16 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     @Override
     public void gotoTestFragment() {
         startActivity(new Intent(this, TestFragmentActivity.class));
+    }
+
+    @Override
+    public void gotoTestSp() {
+        startActivity(new Intent(this, TestSharedPreferenceActivity.class));
+    }
+
+    @Override
+    public void gotoFrescoDemo() {
+//        startActivity(new Intent(this, TestFrescoActivity.class));
     }
 
     @Override

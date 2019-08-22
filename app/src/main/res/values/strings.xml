@@ -11,7 +11,7 @@
     <string name="login_adv_login">Login</string>
     <string name="login_forget_keyword">forget password</string>
     <string name="click_me">Love me ,kiss me</string>
-    <string name="anim_change_alpha">Alpha</string>
+    <string name="anim_change_alpha">Alpha ViewProperty</string>
     <string name="anim_change_scale">Scale</string>
     <string name="anim_translate">Translate</string>
     <string name="anim_mix">MIX</string>
@@ -28,4 +28,6 @@
     <string name="ka_account_set">账号设置</string>
     <string name="ka_third_use">连接第三方说明</string>
     <string name="ka_help">帮助</string>
+
+    <string name="facebook_key">538061523610354</string>
 </resources>

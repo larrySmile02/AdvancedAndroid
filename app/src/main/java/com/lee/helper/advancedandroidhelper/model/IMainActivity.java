@@ -16,4 +16,6 @@ public interface IMainActivity {
     void gotoOvalView();
     void gotoViewPager();
     void gotoTestFragment();
+    void gotoTestSp();
+    void gotoFrescoDemo();
 }

@@ -19,4 +19,6 @@ public class Constant {
     public static final String OVALVIEW = "ovalView";
     public static final String VIEWPAGERADAPTER="ViewPagerAdapter";
     public static final String TESTFRAGMENT="TestFragment";
+    public static final String TESTSP = "CheckSp";
+    public static final String FRESCODEMO = "FrescoDemo";
 }

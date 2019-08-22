@@ -88,6 +88,10 @@ public class RecMainAdapter extends RecyclerView.Adapter
                 listener.gotoViewPager();
             }else if(title.contains(Constant.TESTFRAGMENT)){
                 listener.gotoTestFragment();
+            }else if(title.contains(Constant.TESTSP)){
+                listener.gotoTestSp();
+            }else if(title.contains(Constant.FRESCODEMO)){
+                listener.gotoFrescoDemo();
             }
         });
         if(isOdd(pos) ){
@@ -97,7 +101,7 @@ public class RecMainAdapter extends RecyclerView.Adapter
         }
         animation.setStartOffset(pos * 100);
         View currentView = ((RecViewHolder) holder).getView();
-        if(currentView != null) currentView.startAnimation(animation);
+//        if(currentView != null) currentView.startAnimation(animation);
 
     }
 

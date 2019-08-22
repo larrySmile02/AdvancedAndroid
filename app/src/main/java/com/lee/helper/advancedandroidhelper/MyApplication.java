@@ -15,6 +15,7 @@ public class MyApplication extends FlutterApplication
     @Override
     public void onCreate() {
         super.onCreate();
+//        Fresco.initialize(this);
         ToastUtils.init(this,new ToastBlackStyle());
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
