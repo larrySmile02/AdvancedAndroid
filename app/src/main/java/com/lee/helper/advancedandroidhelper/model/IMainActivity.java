@@ -18,4 +18,5 @@ public interface IMainActivity {
     void gotoTestFragment();
     void gotoTestSp();
     void gotoFrescoDemo();
+    void gotoCustomWindow();
 }

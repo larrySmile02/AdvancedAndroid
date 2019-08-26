@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:name=".MyApplication"
@@ -73,6 +74,7 @@
         <activity android:name=".activity.TestSharedPreferenceActivity"/>
         <!--<activity android:name=".activity.TestFrescoActivity"/>-->
         <activity android:name=".activity.TestGenerateImageActivity"/>
+        <activity android:name=".activity.TestCustomWindowActivity"/>
 
     </application>
 

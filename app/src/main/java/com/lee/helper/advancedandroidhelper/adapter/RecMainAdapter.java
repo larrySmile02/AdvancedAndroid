@@ -92,6 +92,8 @@ public class RecMainAdapter extends RecyclerView.Adapter
                 listener.gotoTestSp();
             }else if(title.contains(Constant.FRESCODEMO)){
                 listener.gotoFrescoDemo();
+            }else if(title.contains(Constant.CUSTOMWINDOW)){
+                listener.gotoCustomWindow();
             }
         });
         if(isOdd(pos) ){

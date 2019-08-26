@@ -23,6 +23,7 @@ import com.lee.helper.advancedandroidhelper.activity.NewsActivity;
 import com.lee.helper.advancedandroidhelper.activity.NotificationActivity;
 import com.lee.helper.advancedandroidhelper.activity.ScrollViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestAnimatiorActivity;
+import com.lee.helper.advancedandroidhelper.activity.TestCustomWindowActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFlutterViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFragmentActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFragmentPagerActivity;
@@ -70,7 +71,7 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     private final int ROMENT_MSG = 0x1;
     private String[] items = new String[]{"Config Demo", "Toast Demo", "RecyclerView Demo", "start service", "remote", "MsgRemote"
             , "JobIntentService", "slideView", "flutterMain", "Animator", "RxPermission ", "News", "ViewEvent", "Notification",
-            "NavigationView","ovalView","ViewPagerAdapter","TestFragment","CheckSp","FrescoDemo"};
+            "NavigationView","ovalView","ViewPagerAdapter","TestFragment","CheckSp","FrescoDemo","CustomWindow"};
     private IRemoteInterface mIRemoteInterface;
     private ImageView ivTemp;
     private RometThreadMsg rometThreadMsg;
@@ -102,16 +103,16 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
         initExecutor();
         initViews();
         EventBus.getDefault().register(this);
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Bitmap bitmap = GenerateImageLogic.getIns().shotRecyclerView(recView);
-                Log.e("CommonUtil", "bitmap2 = " + bitmap.toString());
-                if(bitmap != null){
-                    startActivity(new Intent(MainActivity.this, TestGenerateImageActivity.class));
-                }
-            }
-        }, 2000);
+//        mHandler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Bitmap bitmap = GenerateImageLogic.getIns().shotRecyclerView(recView);
+//                Log.e("CommonUtil", "bitmap2 = " + bitmap.toString());
+//                if(bitmap != null){
+//                    startActivity(new Intent(MainActivity.this, TestGenerateImageActivity.class));
+//                }
+//            }
+//        }, 2000);
 
     }
 
@@ -269,6 +270,11 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     @Override
     public void gotoFrescoDemo() {
 //        startActivity(new Intent(this, TestFrescoActivity.class));
+    }
+
+    @Override
+    public void gotoCustomWindow() {
+        startActivity(new Intent(this, TestCustomWindowActivity.class));
     }
 
     @Override
