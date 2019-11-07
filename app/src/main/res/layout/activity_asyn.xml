@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/title_container"
+        layout="@layout/view_toolbar_test"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec"
+        android:layout_below="@+id/title_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_async"
+        android:text="async"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <Button
+        android:id="@+id/btn_audio"
+        android:text="Test audioManager"
+        android:textAllCaps="false"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+
+</RelativeLayout>

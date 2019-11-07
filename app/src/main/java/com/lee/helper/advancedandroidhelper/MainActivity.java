@@ -23,6 +23,7 @@ import com.lee.helper.advancedandroidhelper.activity.NewsActivity;
 import com.lee.helper.advancedandroidhelper.activity.NotificationActivity;
 import com.lee.helper.advancedandroidhelper.activity.ScrollViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestAnimatiorActivity;
+import com.lee.helper.advancedandroidhelper.activity.TestAsyncTaskActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestCustomWindowActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFlutterViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFragmentActivity;
@@ -71,7 +72,7 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     private final int ROMENT_MSG = 0x1;
     private String[] items = new String[]{"Config Demo", "Toast Demo", "RecyclerView Demo", "start service", "remote", "MsgRemote"
             , "JobIntentService", "slideView", "flutterMain", "Animator", "RxPermission ", "News", "ViewEvent", "Notification",
-            "NavigationView","ovalView","ViewPagerAdapter","TestFragment","CheckSp","FrescoDemo","CustomWindow"};
+            "NavigationView","ovalView","ViewPagerAdapter","TestFragment","CheckSp","FrescoDemo","CustomWindow","Test Async"};
     private IRemoteInterface mIRemoteInterface;
     private ImageView ivTemp;
     private RometThreadMsg rometThreadMsg;
@@ -275,6 +276,11 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     @Override
     public void gotoCustomWindow() {
         startActivity(new Intent(this, TestCustomWindowActivity.class));
+    }
+
+    @Override
+    public void gotoTestAsync() {
+        startActivity(new Intent(this, TestAsyncTaskActivity.class));
     }
 
     @Override

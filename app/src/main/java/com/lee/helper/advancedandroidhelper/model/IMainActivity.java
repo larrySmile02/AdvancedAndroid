@@ -19,4 +19,5 @@ public interface IMainActivity {
     void gotoTestSp();
     void gotoFrescoDemo();
     void gotoCustomWindow();
+    void gotoTestAsync();
 }

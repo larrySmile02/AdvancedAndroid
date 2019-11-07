@@ -22,4 +22,5 @@ public class Constant {
     public static final String TESTSP = "CheckSp";
     public static final String FRESCODEMO = "FrescoDemo";
     public static final String CUSTOMWINDOW = "CustomWindow";
+    public static final String TESTASYNC= "Test Async";
 }
