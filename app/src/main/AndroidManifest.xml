@@ -77,7 +77,10 @@
         <activity android:name=".activity.TestGenerateImageActivity"/>
         <activity android:name=".activity.TestCustomWindowActivity"/>
         <activity android:name=".activity.TestAsyncTaskActivity"/>
-
+        <activity android:name=".activity.TestCustomActivity"/>
+        <activity android:name="com.yue.lib.sample.TestAspectActivity"/>
+        <activity android:name="com.yue.lib_aspect_test.aspect.SubTestAspectActivity"/>
+        <activity android:name=".activity.TestConstraintLayoutActivity"/>
     </application>
 
 </manifest>

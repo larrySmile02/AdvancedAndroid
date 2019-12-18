@@ -20,4 +20,6 @@ public interface IMainActivity {
     void gotoFrescoDemo();
     void gotoCustomWindow();
     void gotoTestAsync();
+    void gotoCustomViewPager();
+    void gotoConstraint();
 }

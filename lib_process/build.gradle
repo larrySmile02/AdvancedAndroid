@@ -1,0 +1,11 @@
+apply plugin: 'java'
+
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.auto.service:auto-service:1.0-rc6'
+    if (gradle.gradleVersion.startsWith("5")){
+        annotationProcessor 'com.google.auto.service:auto-service:1.0-rc6'
+    }
+}

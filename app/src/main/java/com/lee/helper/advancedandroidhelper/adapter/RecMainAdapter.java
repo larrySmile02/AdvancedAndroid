@@ -96,6 +96,10 @@ public class RecMainAdapter extends RecyclerView.Adapter
                 listener.gotoCustomWindow();
             }else if(title.contains(Constant.TESTASYNC)){
                 listener.gotoTestAsync();
+            }else if(title.contains(Constant.CUSTOMVIEWPAGER)){
+                listener.gotoCustomViewPager();
+            }else if(title.contains(Constant.TESTCONSTRAINT)){
+               listener.gotoConstraint();
             }
         });
         if(isOdd(pos) ){

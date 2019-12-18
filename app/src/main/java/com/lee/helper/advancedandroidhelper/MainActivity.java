@@ -4,8 +4,6 @@ import android.Manifest;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -14,7 +12,6 @@ import android.os.RemoteException;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.lee.helper.advancedandroidhelper.activity.NativeGetDataActivity;
@@ -24,11 +21,10 @@ import com.lee.helper.advancedandroidhelper.activity.NotificationActivity;
 import com.lee.helper.advancedandroidhelper.activity.ScrollViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestAnimatiorActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestAsyncTaskActivity;
+import com.lee.helper.advancedandroidhelper.activity.TestConstraintLayoutActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestCustomWindowActivity;
-import com.lee.helper.advancedandroidhelper.activity.TestFlutterViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFragmentActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestFragmentPagerActivity;
-import com.lee.helper.advancedandroidhelper.activity.TestGenerateImageActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestOvalViewActivity;
 import com.lee.helper.advancedandroidhelper.activity.TestSharedPreferenceActivity;
 import com.lee.helper.advancedandroidhelper.activity.ViewEventActivity;
@@ -40,14 +36,13 @@ import com.lee.helper.advancedandroidhelper.service.MyJobService;
 import com.lee.helper.advancedandroidhelper.service.MyRemoteService;
 import com.lee.helper.advancedandroidhelper.service.MyTestService;
 import com.lee.helper.advancedandroidhelper.service.RometThreadMsg;
-import com.lee.helper.advancedandroidhelper.utils.CommonUtil;
-import com.lee.helper.advancedandroidhelper.utils.GenerateImageLogic;
 import com.lee.helper.config.ConfigUIActivity;
 import com.lee.helper.config.GlobelActivityConfig;
 import com.lee.helper.recycler.widget.SimpleDividerItemDoceration;
 import com.lee.helper.toast.ToastUtils;
-import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.yue.lib.sample.TestAspectActivity;
+import com.yue.lib_aspect_test.aspect.SubTestAspectActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -72,7 +67,7 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     private final int ROMENT_MSG = 0x1;
     private String[] items = new String[]{"Config Demo", "Toast Demo", "RecyclerView Demo", "start service", "remote", "MsgRemote"
             , "JobIntentService", "slideView", "flutterMain", "Animator", "RxPermission ", "News", "ViewEvent", "Notification",
-            "NavigationView","ovalView","ViewPagerAdapter","TestFragment","CheckSp","FrescoDemo","CustomWindow","Test Async"};
+            "NavigationView","ovalView","ViewPagerAdapter","TestFragment","CheckSp","FrescoDemo","CustomWindow","Test Async","CustomViewPager","TESTCONSTRAINT"};
     private IRemoteInterface mIRemoteInterface;
     private ImageView ivTemp;
     private RometThreadMsg rometThreadMsg;
@@ -281,6 +276,16 @@ public class MainActivity extends ConfigUIActivity implements IMainActivity {
     @Override
     public void gotoTestAsync() {
         startActivity(new Intent(this, TestAsyncTaskActivity.class));
+    }
+
+    @Override
+    public void gotoCustomViewPager() {
+        startActivity(new Intent(this, SubTestAspectActivity.class));
+    }
+
+    @Override
+    public void gotoConstraint() {
+        startActivity(new Intent(this, TestConstraintLayoutActivity.class));
     }
 
     @Override

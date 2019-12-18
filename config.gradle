@@ -15,4 +15,5 @@ ext{
     SUPPORTVERSION = '28.0.0'
     lifecycleExtensionVersion = '1.1.0'
     frescoVersion = '2.0.0'
+    aspectVersion = "1.9.4"
 }

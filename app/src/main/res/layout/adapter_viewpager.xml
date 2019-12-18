@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/advance_f0fffff"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/advance_red_little">
 
-
-    <TextView
-        android:id="@+id/tv_title"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="16sp"
-        android:text="TEST"
-        android:gravity="center"
+    <com.lee.helper.advancedandroidhelper.widgit.MyConstraintLayout
+        android:id="@+id/ctl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TEST"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </com.lee.helper.advancedandroidhelper.widgit.MyConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

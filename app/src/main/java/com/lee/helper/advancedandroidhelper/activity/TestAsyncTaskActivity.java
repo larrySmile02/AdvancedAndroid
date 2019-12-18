@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -31,6 +32,7 @@ import io.reactivex.functions.Function;
 
 public class TestAsyncTaskActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static final String TAG = TestAsyncTaskActivity.class.getSimpleName();
     private RecyclerView rec;
     private Button btn;
     private Button testAd;
@@ -39,6 +41,7 @@ public class TestAsyncTaskActivity extends AppCompatActivity implements View.OnC
     private Gson gson;
     AudioManager audioManager;
     private FrameLayout fltBack;
+
 
 
     @Override
@@ -69,8 +72,15 @@ public class TestAsyncTaskActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onResume() {
         super.onResume();
-        initAudiao();
+//        initAudiao();
+        testMyAspect();
     }
+
+    private void testMyAspect(){
+
+        Log.e(TAG,"testMyAspect====");
+    }
+
 
     @Override
     public void onClick(View v) {
